@@ -3,8 +3,8 @@ import NavbarItem from "./NavbarItem";
 
 export default function LoggedOut() {
   return (
-    <>
+    <div>
       <NavbarItem path="/login" linkText="Login" />
-    </>
+    </div>
   );
 }

@@ -39,7 +39,7 @@ export default function SignUp() {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             type="email"
             placeholder="Enter email"
             required
@@ -50,7 +50,7 @@ export default function SignUp() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
             type="password"
             placeholder="Password"
             required
@@ -60,6 +60,12 @@ export default function SignUp() {
           <Button variant="primary" type="submit" onClick={submitForm}>
             Log in
           </Button>
+          <Link
+            to="/emailconf"
+            style={{ textAlign: "center", marginLeft: "10px" }}
+          >
+            Forgot my password
+          </Link>
         </Form.Group>
         <Link to="/signup" style={{ textAlign: "center" }}>
           Click here to sign up
