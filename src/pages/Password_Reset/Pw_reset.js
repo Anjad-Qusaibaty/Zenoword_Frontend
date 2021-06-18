@@ -5,9 +5,10 @@ import Button from "react-bootstrap/Button";
 import { patchpw } from "../../store/user/actions";
 import { useDispatch } from "react-redux";
 import { Col } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Pw_reset() {
+  const history = useHistory();
   const { token } = useParams();
   const [password, setPassword] = useState("");
   const [passwordConf, setPasswordConf] = useState("");
@@ -24,6 +25,7 @@ export default function Pw_reset() {
 
     setPassword("");
     setPasswordConf("");
+    history.push("/login");
   }
 
   return (
@@ -40,7 +42,7 @@ export default function Pw_reset() {
             required
           />
         </Form.Group>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group>
           <Form.Label>Retype new password</Form.Label>
           <Form.Control
             value={passwordConf}

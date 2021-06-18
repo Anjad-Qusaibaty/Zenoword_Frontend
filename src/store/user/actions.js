@@ -30,19 +30,17 @@ export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      const response = await axios.post(`${apiUrl}/signup`, {
+      await axios.post(`${apiUrl}/signup`, {
         name,
         email,
         password,
       });
-
-      dispatch(loginSuccess(response.data));
       dispatch(
         showMessageWithTimeout(
           "success",
           true,
           "We've sent you an email with a verification link. If you can't find it in your inbox, please check your spam, it might've ended up there.",
-          20000
+          10000
         )
       );
       dispatch(appDoneLoading());
@@ -87,17 +85,15 @@ export const emailConf = (email) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      const response = await axios.post(`${apiUrl}/emailconf`, {
+      await axios.post(`${apiUrl}/emailconf`, {
         email,
       });
-
-      dispatch(loginSuccess(response.data));
       dispatch(
         showMessageWithTimeout(
           "success",
           true,
           "We've sent you an email with a reset link. If you can't find it in your inbox, please check your spam, it might've ended up there.",
-          20000
+          10000
         )
       );
       dispatch(appDoneLoading());
@@ -117,18 +113,17 @@ export const patchpw = (password, token) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      const response = await axios.post(`${apiUrl}/patchpw`, {
+      await axios.post(`${apiUrl}/patchpw`, {
         password,
         token,
       });
 
-      dispatch(loginSuccess(response.data));
       dispatch(
         showMessageWithTimeout(
           "success",
           true,
           "The new password has been set. Now you can login with it.",
-          20000
+          3000
         )
       );
       dispatch(appDoneLoading());
