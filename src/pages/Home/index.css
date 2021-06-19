@@ -1,0 +1,31 @@
+.sac {
+  font-family: "Sacramento", cursive;
+}
+
+.pHomePage {
+  color: #54cc82;
+  font-weight: bold;
+}
+
+.containterIfram {
+  position: relative;
+  overflow: hidden;
+  width: 40%;
+  padding-top: 25%;
+  border: solid 5px #54cc82;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+}
+
+.responsive-iframe {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
