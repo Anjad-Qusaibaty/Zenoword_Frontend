@@ -14,7 +14,8 @@ import { getUserWithStoredToken } from "./store/user/actions";
 import { Jumbotron } from "react-bootstrap";
 import Home from "../src/pages/Home/index";
 import { Navbar } from "./components/navbar";
-
+import { AccountBox } from "./components/accountBox";
+import styled from "styled-components";
 const Other = () => (
   <Jumbotron>
     <h1>Other</h1>
@@ -24,7 +25,15 @@ const Other = () => (
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
-
+  const AppContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+  `;
   useEffect(() => {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
@@ -35,6 +44,7 @@ function App() {
       <MessageBox />
 
       {isLoading ? <Loading /> : null}
+
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/other" component={Other} />
@@ -42,6 +52,9 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/emailconf" component={Email_conf} />
         <Route path="/patchpw/:token" component={Pw_reset} />
+        <AppContainer>
+          <Route path="/testlogin" component={AccountBox} />
+        </AppContainer>
       </Switch>
     </div>
   );

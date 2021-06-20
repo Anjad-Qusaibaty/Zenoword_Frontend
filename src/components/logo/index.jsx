@@ -21,7 +21,9 @@ export function Logo(props) {
   return (
     <LogoWrapper>
       <LogoImg>
-        <img src={ZenowordLogo} alt="Zenoword logo" />
+        <a href="/">
+          <img src={ZenowordLogo} alt="Zenoword logo" />
+        </a>
       </LogoImg>
       {/* <p style={{ position: "relative" }}>hello</p> */}
     </LogoWrapper>

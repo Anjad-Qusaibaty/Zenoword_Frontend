@@ -1,6 +1,3 @@
-// source code:https://github.com/ipenywis/react-navbar-responsive
-//https://youtu.be/mt7bcvsreMQ
-
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";

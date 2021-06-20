@@ -1,4 +1,4 @@
-// source code:https://github.com/ipenywis/react-navbar-responsive
+// source template:https://github.com/ipenywis/react-navbar-responsive
 //https://youtu.be/mt7bcvsreMQ
 import { motion } from "framer-motion";
 import React from "react";

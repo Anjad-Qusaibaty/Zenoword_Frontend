@@ -1,4 +1,4 @@
-// source code:https://github.com/ipenywis/react-navbar-responsive
+// source template:https://github.com/ipenywis/react-navbar-responsive
 //https://youtu.be/mt7bcvsreMQ
 import React from "react";
 import { useMediaQuery } from "react-responsive";
@@ -54,7 +54,7 @@ export function Navbar(props) {
           color: "#1C8ABE",
         }}
       >
-        Hello <span style={{ color: "#54CC82" }}>{user.name}</span>!
+        Hello <span style={{ color: "#54CC82" }}>{user.name}</span> 👋
       </p>
     );
   }
