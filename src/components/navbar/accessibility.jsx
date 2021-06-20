@@ -7,50 +7,30 @@ import styled from "styled-components";
 const AccessibilityContainer = styled.div`
   display: flex;
   margin-left: 10px;
-`;
-
-const SignupButton = styled.button`
-  border: 0;
-  outline: 0;
-  padding: 8px 1em;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 20px;
-  background-color: #1c8abe;
-  transition: all 240ms ease-in-out;
-  cursor: pointer;
-  border: 2px solid #1c8abe;
-
-  &:hover {
-    background-color: #fff;
-    text-decoration: none;
-    border: 2px solid #54cc82;
-    color: #1c8abe;
-  }
-
-  &:not(:last-of-type) {
-    margin-right: 7px;
-  }
+  justify-content: space-around;
 `;
 
 const LoginButton = styled.button`
   border: 0;
   outline: 0;
   padding: 8px 1em;
-  color: #1c8abe;
+  color: #fff;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   border-radius: 20px;
-  background-color: transparent;
-  border: 2px solid #54cc82;
   transition: all 240ms ease-in-out;
   cursor: pointer;
+  background: rgb(28, 139, 190);
+  background: linear-gradient(
+    58deg,
+    rgba(28, 139, 190, 1) 40%,
+    rgba(74, 177, 224, 1) 100%
+  );
 
   &:hover {
-    color: #fff;
-    background-color: #54cc82;
+    filter: brightness(1.2);
     text-decoration: none;
+    color: #fff;
   }
 
   &:not(:last-of-type) {
@@ -61,11 +41,8 @@ const LoginButton = styled.button`
 export function Accessibility(props) {
   return (
     <AccessibilityContainer>
-      <SignupButton as="a" href="/signup">
-        Sign-up
-      </SignupButton>
       <LoginButton as="a" href="/login">
-        Login
+        Login / Sign-up
       </LoginButton>
     </AccessibilityContainer>
   );

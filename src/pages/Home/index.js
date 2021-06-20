@@ -46,7 +46,7 @@ export default function Home() {
             marginRight: "auto",
             textAlign: "center",
             color: "#1C8ABE",
-            fontSize: "2vw",
+            fontSize: "calc(16px + 1vw)",
             marginBottom: "5%",
           }}
         >
@@ -63,7 +63,7 @@ export default function Home() {
             width: "fit-content",
             marginLeft: "auto",
             marginRight: "auto",
-            fontSize: "2vw",
+            fontSize: "calc(18px + 1vw)",
             color: "#1C8ABE",
           }}
         >

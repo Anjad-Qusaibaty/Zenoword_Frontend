@@ -7,16 +7,17 @@ import { MenuToggle } from "./menuToggle";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import { Logout } from "./logout";
+import ZenowordLogo from "../../assets/images/logo.png";
 
 const NavLinksContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+
   z-index: 100;
 `;
 
 const LinksWrapper = styled.ul`
-  margin: 0;
   padding: 0;
   display: flex;
   height: 100%;
@@ -25,14 +26,15 @@ const LinksWrapper = styled.ul`
   width: 100%;
   flex-direction: column;
   position: fixed;
-  top: 60px;
+  top: 0px;
   left: 0;
 `;
 
 const LinkItem = styled.li`
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 1.1em;
-  color: #222;
+  color: #1c8abe;
   font-weight: 500;
   font-size: 16px;
   display: flex;
@@ -44,6 +46,11 @@ const Link = styled.a`
   text-decoration: none;
   color: inherit;
   font-size: inherit;
+  &:hover {
+    transition: all, 240ms ease-in-out;
+    color: rgba(28, 138, 190, 0.7);
+    text-decoration: none;
+  }
 `;
 
 const Marginer = styled.div`
@@ -59,17 +66,24 @@ export function MobileNavLinks(props) {
       <MenuToggle isOpen={isOpen} toggle={() => setOpen(!isOpen)} />
       {isOpen && (
         <LinksWrapper>
+          <img
+            src={ZenowordLogo}
+            alt="Zenoword logo"
+            style={{
+              width: "120px",
+              height: "120px",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          />
           <LinkItem>
-            <Link href="#">About us</Link>
+            <Link href="/">Home</Link>
           </LinkItem>
           <LinkItem>
             <Link href="/other">Other</Link>
           </LinkItem>
           <LinkItem>
-            <Link href="#">Explore</Link>
-          </LinkItem>
-          <LinkItem>
-            <Link href="#">Impact</Link>
+            <Link href="#">EmptyLink</Link>
           </LinkItem>
           <Marginer />
           {token ? <Logout /> : <Accessibility />}

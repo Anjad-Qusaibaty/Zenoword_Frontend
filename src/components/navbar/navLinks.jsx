@@ -16,16 +16,13 @@ const LinksWrapper = styled.ul`
   height: 100%;
   list-style: none;
 `;
-// border-bottom: 2px solid #54cc82;
-// background-color: #54cc82;
-// color: white;
-// background-image: linear-gradient(to right, transparent 0%, #00c9ff 100%);
+
 const LinkItem = styled.li`
   height: 100%;
   padding: 0 1.1em;
   color: #1c8abe;
   font-weight: 500;
-  font-size: calc(18px + 0.25vw);
+  font-size: calc(16px + 0.25vw);
   align-items: center;
   justify-content: center;
   display: flex;

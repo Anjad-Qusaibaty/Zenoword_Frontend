@@ -37,6 +37,11 @@ export const BoldLink = styled.a`
   font-weight: 500;
   text-decoration: none;
   margin: 0 4px;
+  &:hover {
+    transition: all, 240ms ease-in-out;
+    color: rgba(84, 204, 130, 0.7);
+    text-decoration: none;
+  }
 `;
 
 export const Input = styled.input`
@@ -45,7 +50,7 @@ export const Input = styled.input`
   outline: none;
   border: 1px solid rgba(28, 138, 190, 0.4);
   padding: 0px 10px;
-
+  color: #1c8abe;
   transition: all 200ms ease-in-out;
   font-size: 16px;
 
@@ -60,15 +65,19 @@ export const Input = styled.input`
   &:focus {
     outline: none;
     border-bottom: 2px solid rgb(28, 138, 190);
+    color: #1c8abe;
+    font-weight: bold;
+    letter-spacing: 2px;
   }
 `;
 
 export const SubmitButton = styled.button`
-  width: 100%;
-  padding: 11px 40%;
+  width: 75%;
+  padding: 11px 10%;
+  margin-top: 5%;
   color: #fff;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   border: none;
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
@@ -81,6 +90,6 @@ export const SubmitButton = styled.button`
   );
 
   &:hover {
-    filter: brightness(1.03);
+    filter: brightness(1.2);
   }
 `;

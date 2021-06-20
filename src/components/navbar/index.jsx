@@ -44,7 +44,7 @@ export function Navbar(props) {
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
 
-  function TryP() {
+  function UserLogged() {
     return (
       <p
         style={{
@@ -63,17 +63,7 @@ export function Navbar(props) {
     <NavbarContainer>
       <LeftSection>
         <Logo />
-        {/* <p
-          style={{
-            fontSize: "calc(18px + 0.25vw)",
-            paddingLeft: "15px",
-            paddingTop: "20px",
-            color: "#1C8ABE",
-          }}
-        >
-          Hello <span style={{ color: "#54CC82" }}>{user.name}</span>!
-        </p> */}
-        {token ? <TryP /> : null}
+        {token ? <UserLogged /> : null}
       </LeftSection>
       <MiddleSection>{!isMobile && <NavLinks />}</MiddleSection>
       <RightSection>

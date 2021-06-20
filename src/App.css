@@ -1,3 +1,9 @@
+/* .App {
+  font-family: "Merriweather", serif;
+} */
+
 .App {
-  font-family: "Josefin Slab", serif;
+  font-family: "Merriweather Sans", sans-serif;
+  position: relative;
+  min-height: 100vh;
 }

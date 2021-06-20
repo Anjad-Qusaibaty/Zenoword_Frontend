@@ -1,5 +1,5 @@
-//source:https://github.com/ipenywis/modern-react-login
-//source:https://youtu.be/-bll7l-BKQI
+//source template:https://github.com/ipenywis/modern-react-login
+//source template:https://youtu.be/-bll7l-BKQI
 
 import React from "react";
 import styled from "styled-components";

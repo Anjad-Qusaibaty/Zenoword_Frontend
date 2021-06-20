@@ -8,34 +8,26 @@ const AccessibilityContainer = styled.div`
   margin-left: 10px;
   justify-content: space-around;
 `;
-// const Textlogout = styled.p`
-//   border: 0;
-//   outline: 0;
-//   padding: 8px 1em;
-// `;
 
 const LogoutButton = styled.button`
-  border: 0;
-  outline: 0;
-  height: fit-content;
-  padding: 9px;
+  padding: 11px 20%;
+  margin-top: 5%;
   color: #fff;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
+  border: none;
   border-radius: 20px;
-  background-color: #54cc82;
-  transition: all 240ms ease-in-out;
   cursor: pointer;
-  border: 2px solid #54cc82;
+  transition: all, 240ms ease-in-out;
+  background: rgb(84, 204, 130);
+  background: linear-gradient(
+    58deg,
+    rgba(84, 204, 130, 1) 40%,
+    rgba(142, 230, 176, 1) 100%
+  );
 
   &:hover {
-    background-color: #fff;
-    text-decoration: none;
-    color: #1c8abe;
-  }
-
-  &:not(:last-of-type) {
-    margin-right: 7px;
+    filter: brightness(1.2);
   }
 `;
 

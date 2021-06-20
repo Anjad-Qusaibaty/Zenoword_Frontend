@@ -68,7 +68,7 @@ const SmallText = styled.h5`
   color: #fff;
   text-align: center;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   z-index: 10;
   margin: 0;
   margin-top: 7px;
