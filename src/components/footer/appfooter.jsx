@@ -4,7 +4,12 @@ import GitHub from "./GitHub.png";
 import linkedin from "./linkedin.png";
 
 const FooterContainer = styled.footer`
-  background-color: #1c8abe;
+  background: rgb(28, 139, 190);
+  background: linear-gradient(
+    58deg,
+    rgba(28, 139, 190, 1) 40%,
+    rgba(74, 177, 224, 1) 100%
+  );
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -30,20 +35,32 @@ const LinkItem = styled.a`
 export function Appfooter() {
   return (
     <FooterContainer>
-      <LinkItem href="https://github.com/Anjad-Qusaibaty/Zenoword_Frontend">
+      <LinkItem
+        href="https://github.com/Anjad-Qusaibaty/Zenoword_Frontend"
+        target="_blank"
+      >
         Source Code
       </LinkItem>
-      <LinkItem href="https://github.com/Anjad-Qusaibaty/Zenoword_Frontend">
+      <LinkItem
+        href="https://github.com/Anjad-Qusaibaty/Zenoword_Frontend"
+        target="_blank"
+      >
         <img
           src={GitHub}
           alt="github logo"
           style={{ width: "24px", height: "24px" }}
         />
       </LinkItem>
-      <LinkItem href="https://www.linkedin.com/in/anjad-qusaibaty-70933331/">
+      <LinkItem
+        href="https://www.linkedin.com/in/anjad-qusaibaty-70933331/"
+        target="_blank"
+      >
         Contact Developer
       </LinkItem>
-      <LinkItem href="https://www.linkedin.com/in/anjad-qusaibaty-70933331/">
+      <LinkItem
+        href="https://www.linkedin.com/in/anjad-qusaibaty-70933331/"
+        target="_blank"
+      >
         <img
           src={linkedin}
           alt="Linkedin logo"
