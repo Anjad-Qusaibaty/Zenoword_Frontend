@@ -7,7 +7,6 @@ import MessageBox from "./components/MessageBox";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
 import Home from "../src/pages/Home/index";
 import { Navbar } from "./components/navbar";
 import { AccountBox } from "./components/accountBox";
@@ -15,12 +14,7 @@ import styled from "styled-components";
 import { Pwreset } from "./components/accountBox/pwReset";
 import { EmailConfAlt } from "./components/accountBox/emailConf";
 import { Appfooter } from "./components/footer/appfooter";
-
-const Other = () => (
-  <Jumbotron>
-    <h1>Other</h1>
-  </Jumbotron>
-);
+import About from "./pages/About";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,10 +38,10 @@ function App() {
       <MessageBox />
 
       {isLoading ? <Loading /> : null}
-      <div style={{ paddingBottom: "2.5rem" }}>
+      <div style={{ paddingBottom: "2.5rem", margin: "10px" }}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/other" component={Other} />
+          <Route path="/other" component={About} />
           <AppContainer>
             <Route path="/login" component={AccountBox} />
             <Route path="/patchpw/:token" component={Pwreset} />
