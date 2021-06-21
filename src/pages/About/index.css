@@ -1,6 +1,16 @@
+p {
+  margin-left: 10px;
+  margin-right: 20px;
+  color: #1c8abe;
+}
 .allpage {
   margin-top: 5%;
   margin-bottom: 5%;
+}
+.aboutheaders {
+  text-align: center;
+  color: #54cc82;
+  font-family: "Sacramento", cursive;
 }
 .container {
   display: flex;
@@ -8,8 +18,9 @@
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
-  padding: 0 !important;
+  padding: 2rem !important;
   border: 3px solid #1c8abe;
+  border-radius: 25px;
   margin: 24px;
 }
 
@@ -29,6 +40,29 @@
   margin: 1px;
 }
 
+.contTable {
+  width: fit-content !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  text-align: center;
+  font-size: 16px;
+  vertical-align: middle;
+}
+tbody {
+  color: #1c8abe;
+}
+tbody tr:hover {
+  background-color: #a4d8f0;
+  color: white;
+  transition: all, 240ms ease-in-out;
+}
+.connectLogos {
+  width: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 @media screen and (max-width: 900px) {
   .container {
     flex-direction: column;
@@ -37,35 +71,9 @@
     width: 70%;
   }
   .text {
-    width: 70%;
+    width: 100%;
+  }
+  .contTable {
+    font-size: 14px;
   }
 }
-
-/* 
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-  .image {
-    width: 30%;
-    margin: 2rem;
-    background-color: red;
-  }
-  .text {
-    width: 60%;
-    background-color: blue;
-  }
-  @media screen and (max-width: 900px) {
-    .container {
-      flex-direction: column;
-    }
-    .image {
-      width: 50%;
-    }
-    .text {
-      width: 50%;
-    }
-  } */
