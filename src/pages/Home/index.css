@@ -34,14 +34,21 @@
 
 @media screen and (max-width: 900px) {
   .containterIfram {
-    width: 80%;
-    height: 200px;
+    width: 70%;
+    height: 300px;
   }
   .sac {
     font-size: 40px;
   }
   .welcomesub {
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .containterIfram {
+    width: 70%;
+    height: 200px;
   }
 }
 

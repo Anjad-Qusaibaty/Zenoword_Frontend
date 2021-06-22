@@ -2,6 +2,8 @@
 //https://youtu.be/mt7bcvsreMQ
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../store/user/selectors";
 
 const NavLinksContainer = styled.div`
   height: 100%;
@@ -64,6 +66,7 @@ const Link = styled.a`
 `;
 
 export function NavLinks(props) {
+  const token = useSelector(selectToken);
   return (
     <NavLinksContainer>
       <LinksWrapper>
@@ -73,9 +76,12 @@ export function NavLinks(props) {
         <LinkItemB>
           <Link href="/about">About Zenoword</Link>
         </LinkItemB>
-        <LinkItem>
-          <Link href="/mylibrary">My Library</Link>
-        </LinkItem>
+
+        {token ? (
+          <LinkItem>
+            <Link href="/mylibrary">My Library</Link>
+          </LinkItem>
+        ) : null}
       </LinksWrapper>
     </NavLinksContainer>
   );

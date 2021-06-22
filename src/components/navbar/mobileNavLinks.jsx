@@ -99,9 +99,13 @@ export function MobileNavLinks(props) {
           <LinkItem>
             <Link href="/about">About Zenoword</Link>
           </LinkItem>
-          <LinkItem>
-            <Link href="mylibrary">My Library</Link>
-          </LinkItem>
+
+          {token ? (
+            <LinkItem>
+              <Link href="mylibrary">My Library</Link>
+            </LinkItem>
+          ) : null}
+
           <Marginer />
           {token ? <Logout /> : <Accessibility />}
         </LinksWrapper>

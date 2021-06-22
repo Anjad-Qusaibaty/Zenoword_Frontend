@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../store/user/actions";
+import { useHistory } from "react-router-dom";
 
 const AccessibilityContainer = styled.div`
   display: flex;
@@ -33,10 +34,15 @@ const LogoutButton = styled.button`
 
 export function Logout(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
+  function submitForm() {
+    dispatch(logOut());
+    history.push("/");
+  }
   return (
     <AccessibilityContainer>
-      <LogoutButton onClick={() => dispatch(logOut())}>Logout</LogoutButton>
+      <LogoutButton onClick={submitForm}>Logout</LogoutButton>
     </AccessibilityContainer>
   );
 }
