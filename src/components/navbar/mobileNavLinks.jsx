@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import { Logout } from "./logout";
 import ZenowordLogo from "../../assets/images/logo.png";
+import { selectUser } from "../../store/user/selectors";
 
 const NavLinksContainer = styled.div`
   height: 100%;
@@ -60,6 +61,21 @@ const Marginer = styled.div`
 export function MobileNavLinks(props) {
   const [isOpen, setOpen] = useState(false);
   const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
+  function UserLogged() {
+    return (
+      <p
+        style={{
+          fontSize: "calc(18px + 0.25vw)",
+          paddingLeft: "15px",
+          paddingTop: "20px",
+          color: "#1C8ABE",
+        }}
+      >
+        Hello <span style={{ color: "#54CC82" }}>{user.name}</span> 👋
+      </p>
+    );
+  }
 
   return (
     <NavLinksContainer>
@@ -76,14 +92,15 @@ export function MobileNavLinks(props) {
               marginRight: "auto",
             }}
           />
+          <LinkItem>{token ? <UserLogged /> : null}</LinkItem>
           <LinkItem>
             <Link href="/">Home</Link>
           </LinkItem>
           <LinkItem>
-            <Link href="/other">Other</Link>
+            <Link href="/about">About Zenoword</Link>
           </LinkItem>
           <LinkItem>
-            <Link href="#">EmptyLink</Link>
+            <Link href="mylibrary">My Library</Link>
           </LinkItem>
           <Marginer />
           {token ? <Logout /> : <Accessibility />}

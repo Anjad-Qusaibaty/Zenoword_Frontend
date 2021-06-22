@@ -1,5 +1,10 @@
 .sac {
   font-family: "Sacramento", cursive;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 100px;
+  color: #1c8abe;
 }
 
 .pHomePage {
@@ -17,11 +22,26 @@
   margin-right: auto;
   margin-bottom: 5%;
 }
+.welcomesub {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #1c8abe;
+  font-size: 28px;
+  margin-bottom: 5%;
+}
 
 @media screen and (max-width: 900px) {
   .containterIfram {
     width: 80%;
     height: 200px;
+  }
+  .sac {
+    font-size: 40px;
+  }
+  .welcomesub {
+    font-size: 14px;
   }
 }
 

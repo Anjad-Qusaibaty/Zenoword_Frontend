@@ -63,7 +63,7 @@ export function Navbar(props) {
     <NavbarContainer>
       <LeftSection>
         <Logo />
-        {token ? <UserLogged /> : null}
+        {!isMobile && token && <UserLogged />}
       </LeftSection>
       <MiddleSection>{!isMobile && <NavLinks />}</MiddleSection>
       <RightSection>

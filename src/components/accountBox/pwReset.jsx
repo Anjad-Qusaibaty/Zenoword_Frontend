@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { PwResetForm } from "./pwResetForm";
 
 const BoxContainer = styled.div`
-  width: 380px;
+  width: 320px;
   min-height: 550px;
   display: flex;
   flex-direction: column;
@@ -86,7 +86,7 @@ export function Pwreset(props) {
         <HeaderContainer>
           <HeaderText>Password</HeaderText>
           <HeaderText>Reset</HeaderText>
-          <SmallText>Please type in your new password</SmallText>
+          <SmallText>Please type in a new password</SmallText>
         </HeaderContainer>
       </TopContainer>
       <InnerContainer>

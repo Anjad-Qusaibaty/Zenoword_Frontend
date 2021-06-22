@@ -30,7 +30,7 @@ export function LoginForm(props) {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      history.push("/mylibrary");
     }
   }, [token, history]);
 

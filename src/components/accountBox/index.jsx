@@ -9,7 +9,7 @@ import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signupForm";
 
 const BoxContainer = styled.div`
-  width: 380px;
+  width: 320px;
   min-height: 550px;
   display: flex;
   flex-direction: column;

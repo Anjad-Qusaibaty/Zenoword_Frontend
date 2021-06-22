@@ -18,16 +18,7 @@ export default function Home() {
         />
       </div>
       <div>
-        <h1
-          className="sac"
-          style={{
-            width: "fit-content",
-            marginLeft: "auto",
-            marginRight: "auto",
-            fontSize: "7vw",
-            color: "#1C8ABE",
-          }}
-        >
+        <h1 className="sac">
           Welcome to{" "}
           <span
             style={{
@@ -39,17 +30,7 @@ export default function Home() {
         </h1>
       </div>
       <div>
-        <p
-          style={{
-            width: "fit-content",
-            marginLeft: "auto",
-            marginRight: "auto",
-            textAlign: "center",
-            color: "#1C8ABE",
-            fontSize: "calc(16px + 1vw)",
-            marginBottom: "5%",
-          }}
-        >
+        <p className="welcomesub">
           A free platform for <span className="pHomePage">wordaholics</span> to
           organize their <br></br>
           <span className="pHomePage">quotes</span> &{" "}

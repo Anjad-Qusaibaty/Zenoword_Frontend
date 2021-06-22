@@ -15,19 +15,21 @@ import { Pwreset } from "./components/accountBox/pwReset";
 import { EmailConfAlt } from "./components/accountBox/emailConf";
 import { Appfooter } from "./components/footer/appfooter";
 import About from "./pages/About";
+import Mylibrary from "./pages/My_library";
 
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+`;
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
-  const AppContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10%;
-  `;
+
   useEffect(() => {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
@@ -41,7 +43,8 @@ function App() {
       <div style={{ paddingBottom: "2.5rem", margin: "10px" }}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/other" component={About} />
+          <Route path="/about" component={About} />
+          <Route path="/mylibrary" component={Mylibrary} />
           <AppContainer>
             <Route path="/login" component={AccountBox} />
             <Route path="/patchpw/:token" component={Pwreset} />

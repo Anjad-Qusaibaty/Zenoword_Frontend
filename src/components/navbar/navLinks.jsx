@@ -71,10 +71,10 @@ export function NavLinks(props) {
           <Link href="/">Home</Link>
         </LinkItem>
         <LinkItemB>
-          <Link href="/other">About Zenoword</Link>
+          <Link href="/about">About Zenoword</Link>
         </LinkItemB>
         <LinkItem>
-          <Link href="#">EmptyLink</Link>
+          <Link href="/mylibrary">My Library</Link>
         </LinkItem>
       </LinksWrapper>
     </NavLinksContainer>
