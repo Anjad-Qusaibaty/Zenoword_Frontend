@@ -1,3 +1,4 @@
+
 p {
   margin-left: 10px;
   margin-right: 10px;
@@ -12,7 +13,7 @@ p {
 .container1 {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
   flex-direction: row;
   padding: 0;
@@ -21,12 +22,13 @@ p {
   margin: 12px auto;
   width: 100%;
   max-width: 70%;
+  position: relative;
 }
 
 .image {
   width: 28%;
   height: max-content;
-  /* margin: 1rem; */
+ 
 }
 .image img {
   width: 50%;
@@ -41,7 +43,7 @@ p {
   height: max-content;
   width: 68%;
   text-align: justify;
-  /* margin: 1px; */
+
 }
 
 .pageViewContainer {
@@ -63,8 +65,9 @@ p {
   flex-direction: row;
 }
 .extractTag {
-  border-radius: 25px;
+  border-radius: 10px;
   background-color: #54cc82;
+  border: 3px dotted #1C8ABE;
   color: #fff;
   width: fit-content;
   padding: 10px;
@@ -80,7 +83,7 @@ p {
 .mainExtract p {
   font-size: 20px;
 }
-/*quotes: "“" "„";*/
+
 .mainExtract:before {
   color: #54cc82;
   content: "“";
@@ -104,6 +107,148 @@ p {
 .spans {
   color: #54cc82;
 }
+.search {
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin:auto;
+  padding: 10px;
+  vertical-align: middle;
+}
+.Bar{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #54CC82;
+  border-right: none;
+  padding: 5px;
+  height: 46px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #1C8ABE;
+
+    outline: none;
+    border: 2px solid rgb(28, 138, 190);
+    color: #1c8abe;
+    font-weight: bold;
+    letter-spacing: 2px;
+  
+}
+
+.searchButton {
+  width: 40px;
+  height: 46px;
+  border: 1px solid #54CC82;
+  background: #54CC82;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+::placeholder{
+  color: rgb(84, 204, 130,0.5);
+}
+.newaddition{
+  width: 200px;
+  height: 46px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all, 240ms ease-in-out;
+  background: rgb(84, 204, 130);
+  background: linear-gradient(
+    58deg,
+    rgba(84, 204, 130, 1) 40%,
+    rgba(142, 230, 176, 1) 100%
+  ); 
+}
+.newaddition:hover {
+  filter: brightness(1.08);
+  letter-spacing: 1px;
+  
+}
+
+.checklabel{
+  width: 200px;
+  border: 2px solid aqua;
+  height: 46px;
+  
+}
+
+
+.bootstrapcheck{
+width: 300px;
+}
+
+.trycheck{
+  text-align: left;
+  margin-left: 20px;
+
+}
+.form-group{
+  color: #1C8ABE;
+  margin-top: 10px;
+  height: fit-content;
+}
+.searchinfo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  vertical-align: middle;
+}
+
+.resetButton{
+  display: inline-block;
+  width: 120px;
+  height: 46px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all, 240ms ease-in-out;
+  background: rgb(28, 139, 190);
+  background: linear-gradient(
+    58deg,
+    rgba(28, 139, 190, 1) 40%,
+    rgba(74, 177, 224, 1) 100%
+  );
+}
+.resetButton:hover {
+  filter: brightness(1.08);
+  letter-spacing: 1px;
+
+}
+.infoP{
+  display: inline-block;
+  margin-top:0;
+  margin-bottom: 0;
+}
+
+.edit{
+position: absolute;
+right: 2rem;
+bottom: 1rem;
+}
+
+
 
 @media screen and (max-width: 900px) {
   .container1 {
@@ -132,16 +277,54 @@ p {
   }
   .mainExtract:before,
   .mainExtract:after {
+
     font-size: 2em;
   }
+  .search{
+    min-width: 100%;
+    font-size: 14px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .newaddition{
+    font-size: 14px;
+    max-width: 150px;
+  }
+  .Bar{
+    display: flex;
+  align-items: center;
+  flex-direction: row;
+  }
+  .trycheck{
+    text-align: center;
+    margin:0;
+  
+  }
+  .resetButton{
+    font-size: 14px;
+  }
+
 }
 @media screen and (max-width: 2024px) {
   .container1 {
     width: 50%;
   }
 }
-@media screen and (max-width: 1324px) {
+@media screen and (max-width: 1800px) {
+  .container1 {
+    width: 60%;
+  }
+}
+
+
+@media screen and (max-width: 1600px) {
   .container1 {
     width: 70%;
+  }
+  .newaddition{
+    width:300px
+  }
+  .search{
+    width: 60%;
   }
 }

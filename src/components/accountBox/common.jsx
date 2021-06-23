@@ -90,6 +90,7 @@ export const SubmitButton = styled.button`
   );
 
   &:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.09);
+    letter-spacing: 1px;
   }
 `;
