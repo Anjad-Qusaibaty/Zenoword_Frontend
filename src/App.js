@@ -16,6 +16,8 @@ import { EmailConfAlt } from "./components/accountBox/emailConf";
 import { Appfooter } from "./components/footer/appfooter";
 import About from "./pages/About";
 import Mylibrary from "./pages/My_library";
+import Delete from "./pages/Delete"
+import Edit from "./pages/Edit"
 
 const AppContainer = styled.div`
   width: 100%;
@@ -45,6 +47,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/mylibrary" component={Mylibrary} />
+          <Route path="/delete/:id" component={Delete} />
+          <Route path="/edit/:id" component={Edit} />
           <AppContainer>
             <Route path="/login" component={AccountBox} />
             <Route path="/patchpw/:token" component={Pwreset} />

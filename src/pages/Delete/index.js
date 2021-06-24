@@ -1,83 +1,58 @@
 import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect } from "react";
 import "./library_page_view.css";
 import { selectUser } from "../../store/user/selectors";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import { useHistory } from "react-router-dom";
 import Onlinearticle from "./Online_Article.png";
-import {Form} from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { deleteExtract } from "../../store/user/actions";
 
-export default function Mylibrary() {
+
+export default function Delete() {
+  const { id } = useParams();
+ 
   const token = useSelector(selectToken);
   const history = useHistory();
-  const[searchCriteria,setSearchCriteria]=useState("All")
-  const [search,set_search]=useState("");
+  const dispatch = useDispatch();
+ 
+  
  
   const user = useSelector(selectUser);
-  console.log("from library page",user.extracts);
+  const filteredExtract=user.extracts.filter((ext)=> ext.id===Number(id))
+  
+
 
   useEffect(() => {
-    if (token === null) {
+  if (token === null) {
       history.push("/login");
     }
+
+
   }, [token, history]);
   
-  const [filteredData,setFilteredData]=useState([""]);
- 
+  
 
-
-  function handel(event) {
+  function Confirm(event) {
     event.preventDefault();
-
-    const filtering=user.extracts.filter(
-      (ext) =>
-        ext.text.toLowerCase().includes(search.toLowerCase()) ||
-        ext.author.toLowerCase().includes(search.toLowerCase()) ||
-        ext.title.toLowerCase().includes(search.toLowerCase())||ext.subtitle.toLowerCase().includes(search.toLowerCase())||
-        JSON.stringify(ext.tags.map((t) => t.type)).toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredData(filtering);
-    setSearchCriteria(search);
-    set_search("");
+    console.log("I am confirming");
+    dispatch(deleteExtract(id));
+    history.push("/mylibrary")
   }
 
-  function reset(event){
+  function Cancel(event){
     event.preventDefault();
-    setSearchCriteria("All")
+    console.log("I am Canceling");
+    history.push("/mylibrary");
   }
 
-  const render=searchCriteria === "All"? user.extracts:filteredData;
+  
 
   return (
     <div>
-    
-    
-   <div className="search">
-    
-       <form className="Bar" onSubmit={handel}> 
-      <input type="search" className="searchTerm" placeholder="Search my library..." value={search}
-        onChange={(event)=> set_search(event.target.value)}/>
-      <button type="submit" className="searchButton">
-        <i className="fa fa-search"></i>
-     </button>
-     </form>
-    
-  <div className="bootstrapcheck">
-  <Form.Group controlId="formBasicCheckbox">
-    <Form.Check  className="trycheck" type="checkbox" label="Book title" />
-  </Form.Group>
-  </div>
-     <button className="newaddition">+ New Addition</button>
-   </div>
-   <div className="searchinfo">
-     <p className="infoP"> <span style={{color:"#54CC82"}}>Search criteria: </span>{searchCriteria}</p>
-     <p className="infoP"> <span style={{color:"#54CC82"}}>Search results: </span>{render.length}</p>
-     <button onClick={reset} className="resetButton">Reset search</button>
-   </div>
-   <div>{user.extracts.length>0 && render.length===0?<p className="noresults">Sorry no results match your search criteria</p> :user.extracts.length===0?<p className="noresults">You have no extracts yet!</p>: null}</div>
-      <div>
-        {render.map((anExtract) => {
+ <div>
+        {filteredExtract.map((anExtract) => {
           return (
             <div key={Math.random()} className="allpage">
               <div className="container1">
@@ -133,8 +108,10 @@ export default function Mylibrary() {
                       : null}
                   </div>
                   <div>
-                    <a href={`/edit/${anExtract.id}`} className="edit"><i className="far fa-edit"></i></a>
-                    <a href={`/delete/${anExtract.id}`} className="delete"><i className="far fa-trash-alt"></i></a>
+                    <a href="/" className="edit"><i className="far fa-edit"></i></a>
+                  </div>
+                  <div>
+
                   </div>
                 </div>
               </div>
@@ -142,6 +119,14 @@ export default function Mylibrary() {
           );
         })}
       </div>
+        <div><p className="noresults">Are you sure you want to delete this extract?</p></div>
+
+        <div className="searchinfo">
+     <button onClick={Confirm} className="confirmButton">Confirm</button>
+     <button onClick={Cancel} className="CancelButton">Cancel</button>
+   </div>
+
+      
     </div>
   );
 }

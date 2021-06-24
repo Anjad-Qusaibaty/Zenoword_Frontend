@@ -258,6 +258,54 @@ margin-top: 50px;
 font-size: 20px;
 }
 
+.confirmButton{
+  margin-right: 10px;
+  display: inline-block;
+  width: 120px;
+  height: 46px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all, 240ms ease-in-out;
+  background: rgb(28, 139, 190);
+  background: linear-gradient(
+    58deg,
+    rgba(28, 139, 190, 1) 40%,
+    rgba(74, 177, 224, 1) 100%
+  );
+}
+.confirmButton:hover {
+  filter: brightness(1.08);
+  letter-spacing: 1px;
+
+}
+.CancelButton{
+  margin-left: 10px;
+  display: inline-block;
+  width: 120px;
+  height: 46px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all, 240ms ease-in-out;
+  background: rgb(84, 204, 130);
+  background: linear-gradient(
+    58deg,
+    rgba(84, 204, 130, 1) 40%,
+    rgba(142, 230, 176, 1) 100%
+  ); 
+}
+.CancelButton:hover {
+  filter: brightness(1.08);
+  letter-spacing: 1px;
+
+}
 
 @media screen and (max-width: 900px) {
   .container1 {
