@@ -108,7 +108,7 @@ export default function Delete() {
                       : null}
                   </div>
                   <div>
-                    <a href="/" className="edit"><i className="far fa-edit"></i></a>
+                  <a href={`/edit/${anExtract.id}`} className="edit"><i className="far fa-edit"></i></a>
                   </div>
                   <div>
 

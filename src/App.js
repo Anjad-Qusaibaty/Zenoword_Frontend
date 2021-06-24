@@ -17,7 +17,7 @@ import { Appfooter } from "./components/footer/appfooter";
 import About from "./pages/About";
 import Mylibrary from "./pages/My_library";
 import Delete from "./pages/Delete"
-import Edit from "./pages/Edit"
+import Edit from "./pages/Edit/index"
 
 const AppContainer = styled.div`
   width: 100%;

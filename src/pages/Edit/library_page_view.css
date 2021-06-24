@@ -1,3 +1,29 @@
+.areas{
+  width: 78%;
+  height:42px;
+  height:fit-content;
+  margin-bottom:5px;
+  outline: none;
+  border: 1px solid rgba(28, 138, 190, 0.4);
+  padding: 0px 10px;
+  color: #1c8abe;
+  transition: all 200ms ease-in-out;
+  font-size: 16px;
+
+}
+::placeholder {
+  color: rgba(28, 138, 190, 0.7);
+}
+
+.areas:not(:last-of-type) {
+  border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
+}
+
+.areas:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(28, 138, 190);
+  color: #1c8abe;
+  font-weight: bold;}
 
 p {
   margin-left: 10px;
@@ -305,6 +331,17 @@ font-size: 20px;
   filter: brightness(1.08);
   letter-spacing: 1px;
 
+}
+
+.editfrom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  vertical-align: middle;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 900px) {
