@@ -171,6 +171,42 @@ export const deleteExtract = (id) => {
     }
   };
 };
+export const editExtract = (id,text,author,title,subtitle,page,link,mediaType,imageUrl,tags) => {
+  return async (dispatch,getState) => {
+    dispatch(appLoading());
+    try {
+      
+      const userId=getState().user.id
+      console.log(userId);
+      const response = await axios.patch(`${apiUrl}/extracts/edit/${id}`,
+      {text,
+        author,
+        title,
+        subtitle,
+        page,
+        link,
+        mediaType,
+        imageUrl,
+        tags,
+        userId});
+      
+      console.log("updated extracts",response.data);
+
+      // dispatch(deleteSuccess(response.data));
+      dispatch(showMessageWithTimeout("success", false, "The extract has been updated.", 1500));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
 
 
 export const getUserWithStoredToken = () => {

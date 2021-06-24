@@ -96,7 +96,7 @@ width:78%;
 //   }
 // `;
 export const Select = styled.select`
-  width: 35%;
+  width: 78%;
   height: 42px;
   margin-bottom:5px;
   outline: none;
@@ -123,7 +123,7 @@ export const Select = styled.select`
 `;
 
 export const SubmitButton = styled.button`
-  width: 75%;
+  width: 60%;
   padding: 11px 10%;
   margin-top: 5%;
   color: #fff;

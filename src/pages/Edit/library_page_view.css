@@ -11,7 +11,7 @@
   font-size: 16px;
 
 }
-::placeholder {
+.areas::placeholder {
   color: rgba(28, 138, 190, 0.7);
 }
 

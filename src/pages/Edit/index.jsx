@@ -12,6 +12,7 @@ import { BoxContainer, FormContainer, Input, SubmitButton,Select } from "./commo
 import { Marginer } from "../../components/marginer";
 import styled from "styled-components";
 import TextareaAutosize from 'react-textarea-autosize';
+import { editExtract } from "../../store/user/actions";
 
 const AllContainer = styled.div`
   width: 520px;
@@ -140,26 +141,27 @@ export default function Edit() {
   const [editExtractText, setEditExtractText] = useState("");
   const [editMediaType, setEditMediaType] = useState("Book");
   const [editTitle, setEditTitle] = useState("");
-  const [editSubtitle, setEditSubtitle] = useState("");
+  const [editSubtitle, setEditSubtitle] = useState("n/a");
   const [editAuthor, setEditAuthor] = useState("");
-  const [editPage, setEditPage] = useState(null);
-  const [editTags, setEditTags] = useState([]);
-  const [editImageUrl, setEditImageUrl] = useState(null);
-  const [editLink, setEditLink] = useState(null);
+  const [editPage, setEditPage] = useState("");
+  const [editTags, setEditTags] = useState("");
+  const [editImageUrl, setEditImageUrl] = useState("");
+  const [editLink, setEditLink] = useState("");
+
 
   function Confirm(event) {
     event.preventDefault();
     console.log("I am confirming");
-    const alltags=obj.tags.length!==0? obj.tags.map(t=>t.type).toString():"";
+    const alltags=obj.tags.length!==0? obj.tags.map(t=>t.type).toString():[""];
     setConfirmEdit(true)
     setEditExtractText(obj.text)
     setEditMediaType(obj.mediaType)
     setEditTitle(obj.title)
-    if(obj.subtitle !==null){
+    if(obj.subtitle !=="n/a"){
       setEditSubtitle(obj.subtitle)
     }
     setEditAuthor(obj.author)
-    if(obj.page){
+    if(obj.page!==null){
       setEditPage(obj.page)
     }
     setEditTags(alltags)
@@ -186,6 +188,7 @@ console.log("edits submitted")
     // setConfirmPassword("");
     // history.push("/mylibrary");
     console.log({text:editExtractText,mediaType:editMediaType,title:editTitle,subtitle:editSubtitle,author:editAuthor,page:editPage,tags:editTags,imageUrl:editImageUrl,link:editLink})
+    dispatch(editExtract(id,editExtractText,editAuthor,editTitle,editSubtitle,editPage,editLink,editMediaType,editImageUrl,editTags));
   }
 
 
@@ -370,7 +373,7 @@ console.log("edits submitted")
           required
         />
         </Divlabelinput>
-:null}
+            :null}
         <Divlabelinput>
         <Divlabel>
         <FormLabel>
