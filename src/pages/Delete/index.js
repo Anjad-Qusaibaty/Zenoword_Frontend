@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import Onlinearticle from "./Online_Article.png";
 import { useParams } from "react-router-dom";
 import { deleteExtract } from "../../store/user/actions";
+import Book from "./book.png"
 
 
 export default function Delete() {
@@ -57,17 +58,21 @@ export default function Delete() {
             <div key={Math.random()} className="allpage">
               <div className="container1">
                 <div className="image">
-                  {anExtract.mediaType === "Book" ? (
+                {anExtract.mediaType === "Book" && anExtract.imageUrl !=="" ?
                     <img
                       src={anExtract.imageUrl}
                       alt={`cover of ${anExtract.title}`}
                     />
-                  ) : (
+                  : anExtract.mediaType === "Book" && anExtract.imageUrl ==="" ?
+                      <img
+                      src={Book}
+                      alt={"Book placeholder"}
+                    /> :
                     <img
                       src={Onlinearticle}
                       alt={"Online Article placeholder"}
                     />
-                  )}
+                  }
                 </div>
                 <div className="text">
                   <div className="mainExtract">
@@ -80,30 +85,30 @@ export default function Delete() {
                     </p>
                     <p>
                       <span className="spans">Title:</span> {anExtract.title}
-                      {anExtract.subtitle !== "n/a" ? " (" : null}
-                      {anExtract.subtitle !== "n/a" ? anExtract.subtitle:null}
-                      {anExtract.subtitle !== "n/a" ? ")" : null}
+                      {anExtract.subtitle !== "" ? " (" : null}
+                      {anExtract.subtitle !== "" ? anExtract.subtitle:null}
+                      {anExtract.subtitle !== "" ? ")" : null}
                     </p>
                     <p>
                       <span className="spans">Author:</span> {anExtract.author}
                     </p>
-                    {anExtract.page !== null ? (
+                    {anExtract.page !== "" && anExtract.mediaType ==="Book"? (
                       <p>
                         <span className="spans">Page:</span> {anExtract.page}
                       </p>
                     ) : null}
                     <p>
                       <a href={anExtract.link} target="blank">
-                        {anExtract.link !== null ? (
+                        {anExtract.link !== "" ? (
                           <span className="spans">Link</span>
                         ) : null}
                       </a>
                     </p>
                   </div>
                   <div className="tagscont">
-                    {anExtract.tags.length > 0
-                      ? anExtract.tags.map((tag) => (
-                          <div className="extractTag" key={Math.random()}>#{tag.type}</div>
+                  {anExtract.tags.length > 0
+                      ? anExtract.tags.split(/[,;.]+/).map((tag) => (
+                          <div className="extractTag" key={Math.random()}>#{tag}</div>
                         ))
                       : null}
                   </div>

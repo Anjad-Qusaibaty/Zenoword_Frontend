@@ -1,4 +1,4 @@
-import { LOG_OUT, LOGIN_SUCCESS, TOKEN_STILL_VALID, UPDATED_EXTRACT } from "./actions";
+import { LOG_OUT, LOGIN_SUCCESS, TOKEN_STILL_VALID, DELETE_EXTRACT,EDIT_EXTRACT,ADD_EXTRACT } from "./actions";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -20,8 +20,14 @@ export default function reducer (state = initialState, action){
     case TOKEN_STILL_VALID:
       return { ...state, ...action.payload };
       
-      case UPDATED_EXTRACT:
+      case DELETE_EXTRACT:
         return { ...state, extracts: action.payload }; 
+
+        case EDIT_EXTRACT:
+          return { ...state, extracts: action.payload };  
+          
+        case ADD_EXTRACT:
+            return { ...state, extracts: action.payload };     
 
     default:
       return state;

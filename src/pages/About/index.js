@@ -10,13 +10,13 @@ import Linkedin from "./Lin.png";
 export default function About() {
   return (
     <div className="allpage">
-      <div className="container">
-        <div className="image">
+      <div className="aboutcontainer">
+        <div className="aboutimage">
           <img src={Library} alt="old books of the developer" />
         </div>
-        <div className="text">
+        <div className="abouttext">
           <h1 className="aboutheaders">Background Story</h1>
-          <p style={{ marginLeft: "10px", marginRight: "20px" }}>
+          <p className="aboutfont" style={{ marginLeft: "10px", marginRight: "20px" }}>
             I love reading and when I read a book (especially non-fiction) I
             leave a lot of notes and highlights to revisit and contemplate every
             now and then. At the beginning of 2012, I had to flee my country
@@ -38,13 +38,13 @@ export default function About() {
           </p>
         </div>
       </div>
-      <div className="container">
-        <div className="image">
+      <div className="aboutcontainer">
+        <div className="aboutimage">
           <img src={Zenodotus} alt="Zenodotus re-imagined" />
         </div>
-        <div className="text">
+        <div className="abouttext">
           <h1 className="aboutheaders">Why Zenoword?</h1>
-          <p style={{ marginLeft: "10px", marginRight: "20px" }}>
+          <p className="aboutfont" style={{ marginLeft: "10px", marginRight: "20px" }}>
             The name Zenoword has two parts. The first one is{" "}
             <span style={{ color: "#54CC82" }}>Zeno</span> which is a reference
             to{" "}
@@ -72,13 +72,13 @@ export default function About() {
           </p>
         </div>
       </div>
-      <div className="container">
-        <div className="image">
+      <div className="aboutcontainer">
+        <div className="aboutimage">
           <img src={Contributors} alt="Helping hands" />
         </div>
-        <div className="text">
+        <div className="abouttext">
           <h1 className="aboutheaders">Contributors </h1>
-          <p>
+          <p className="aboutfont" >
             I am very grateful to everyone who helped with this app. Without
             their support and advice, it wouldn't have been possible. Below is
             the list of contributors in alphabetical order:

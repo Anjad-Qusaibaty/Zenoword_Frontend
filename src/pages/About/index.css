@@ -1,7 +1,8 @@
-p {
+.aboutfont {
   margin-left: 10px;
   margin-right: 20px;
-  color: #1c8abe;
+  /* color: #1c8abe; */
+  color: black;
   font-size: 18px;
 }
 .allpage {
@@ -13,7 +14,10 @@ p {
   color: #54cc82;
   font-family: "Sacramento", cursive;
 }
-.container {
+.aboutcontainer {
+  width:75%;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,19 +26,20 @@ p {
   padding: 2rem !important;
   border: 3px solid #1c8abe;
   border-radius: 25px;
-  margin: 24px;
+  margin-top: 20px ;
+  margin-bottom: 20px;
 }
 
-.image {
+.aboutimage {
   width: 38%;
   height: max-content;
   margin: 1rem;
 }
-.image img {
+.aboutimage img {
   width: 100%;
   height: 100%;
 }
-.text {
+.abouttext {
   height: max-content;
   width: 58%;
   text-align: justify;
@@ -65,16 +70,16 @@ tbody tr:hover {
 }
 
 @media screen and (max-width: 900px) {
-  .container {
+  .aboutcontainer {
     flex-direction: column;
   }
-  .image {
+  .aboutimage {
     width: 70%;
   }
-  .text {
+  .abouttext {
     width: 100%;
   }
   .contTable {
-    font-size: 14px;
+    font-size: 12px;
   }
 }

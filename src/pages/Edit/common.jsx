@@ -123,7 +123,7 @@ export const Select = styled.select`
 `;
 
 export const SubmitButton = styled.button`
-  width: 60%;
+  width: 50%;
   padding: 11px 10%;
   margin-top: 5%;
   color: #fff;
@@ -139,6 +139,10 @@ export const SubmitButton = styled.button`
     rgba(28, 139, 190, 1) 40%,
     rgba(74, 177, 224, 1) 100%
   );
+  @media screen and (max-width: 900px) {
+    width: 70%;
+
+  }
 
   &:hover {
     filter: brightness(1.09);

@@ -11,7 +11,9 @@ import {
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
-export const UPDATED_EXTRACT = "UPDATED_EXTRACT";
+export const DELETE_EXTRACT = "DELETE_EXTRACT";
+export const EDIT_EXTRACT = "EDIT_EXTRACT";
+export const ADD_EXTRACT = "ADD_EXTRACT";
 
 const loginSuccess = (userWithToken) => {
   return {
@@ -19,10 +21,22 @@ const loginSuccess = (userWithToken) => {
     payload: userWithToken,
   };
 };
-const deleteSuccess = (updatedExtract) => {
+const deleteSuccess = (extractsAfterDelete) => {
   return {
-    type: UPDATED_EXTRACT,
-    payload: updatedExtract,
+    type: DELETE_EXTRACT,
+    payload: extractsAfterDelete,
+  };
+};
+const editSuccess = (extractsAfterEdit) => {
+  return {
+    type: EDIT_EXTRACT,
+    payload: extractsAfterEdit,
+  };
+};
+const addSuccess = (extractsAfterAdd) => {
+  return {
+    type: ADD_EXTRACT,
+    payload: extractsAfterAdd,
   };
 };
 
@@ -155,7 +169,8 @@ export const deleteExtract = (id) => {
       const userId=getState().user.id
       console.log(userId);
       const response = await axios.post(`${apiUrl}/extracts/delete/${id}`,{userId});
-      console.log("updated extracts",response.data);
+      // console.log("extracts after deleting",response.data);
+
       dispatch(deleteSuccess(response.data));
       dispatch(showMessageWithTimeout("success", false, "The extract has been deleted.", 1500));
       dispatch(appDoneLoading());
@@ -192,8 +207,70 @@ export const editExtract = (id,text,author,title,subtitle,page,link,mediaType,im
       
       console.log("updated extracts",response.data);
 
-      // dispatch(deleteSuccess(response.data));
+      dispatch(editSuccess(response.data));
       dispatch(showMessageWithTimeout("success", false, "The extract has been updated.", 1500));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+export const addExtract = (text,author,title,subtitle,page,link,mediaType,imageUrl,tags) => {
+  return async (dispatch,getState) => {
+    dispatch(appLoading());
+    try {
+      
+      const userId=getState().user.id
+      console.log(userId);
+      const response = await axios.patch(`${apiUrl}/extracts/create`,
+      {text,
+        author,
+        title,
+        subtitle,
+        page,
+        link,
+        mediaType,
+        imageUrl,
+        tags,
+        userId});
+      
+      console.log("updated extracts",response.data);
+
+      dispatch(addSuccess(response.data));
+      dispatch(showMessageWithTimeout("success", false, "An extract has been added.", 1500));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+export const visionAPI = (location) => {
+  return async (dispatch,getState) => {
+    dispatch(appLoading());
+    try {
+      
+      const userId=getState().user.id
+
+      const response = await axios.post(`${apiUrl}/extracts/vision`,{userId,location});
+      
+      console.log("Vision Data?",response.data);
+
+      // dispatch(addSuccess(response.data));
+      dispatch(showMessageWithTimeout("success", false, "An extract has been added.", 1500));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {

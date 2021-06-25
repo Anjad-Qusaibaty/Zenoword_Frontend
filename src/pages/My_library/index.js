@@ -7,6 +7,7 @@ import { selectToken } from "../../store/user/selectors";
 import { useHistory } from "react-router-dom";
 import Onlinearticle from "./Online_Article.png";
 import {Form} from "react-bootstrap";
+import Book from "./book.png"
 
 export default function Mylibrary() {
   const token = useSelector(selectToken);
@@ -25,6 +26,9 @@ export default function Mylibrary() {
   
   const [filteredData,setFilteredData]=useState([""]);
  
+  function redirectToCreate(){
+    history.push("/create");
+  }
 
 
   function handel(event) {
@@ -34,8 +38,7 @@ export default function Mylibrary() {
       (ext) =>
         ext.text.toLowerCase().includes(search.toLowerCase()) ||
         ext.author.toLowerCase().includes(search.toLowerCase()) ||
-        ext.title.toLowerCase().includes(search.toLowerCase())||ext.subtitle.toLowerCase().includes(search.toLowerCase())||
-        JSON.stringify(ext.tags.map((t) => t.type)).toLowerCase().includes(search.toLowerCase())
+        ext.title.toLowerCase().includes(search.toLowerCase())||ext.subtitle.toLowerCase().includes(search.toLowerCase())||ext.tags.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredData(filtering);
     setSearchCriteria(search);
@@ -68,12 +71,12 @@ export default function Mylibrary() {
     <Form.Check  className="trycheck" type="checkbox" label="Book title" />
   </Form.Group>
   </div>
-     <button className="newaddition">+ New Addition</button>
+  <button className="newaddition" onClick={redirectToCreate}>+ New Addition</button>
    </div>
    <div className="searchinfo">
      <p className="infoP"> <span style={{color:"#54CC82"}}>Search criteria: </span>{searchCriteria}</p>
      <p className="infoP"> <span style={{color:"#54CC82"}}>Search results: </span>{render.length}</p>
-     <button onClick={reset} className="resetButton">Reset search</button>
+     <button onClick={reset} style={{width:"150px"}} className="resetButton">Reset search</button>
    </div>
    <div>{user.extracts.length>0 && render.length===0?<p className="noresults">Sorry no results match your search criteria</p> :user.extracts.length===0?<p className="noresults">You have no extracts yet!</p>: null}</div>
       <div>
@@ -82,17 +85,21 @@ export default function Mylibrary() {
             <div key={Math.random()} className="allpage">
               <div className="container1">
                 <div className="image">
-                  {anExtract.mediaType === "Book" ? (
+                  {anExtract.mediaType === "Book" && anExtract.imageUrl !=="" ?
                     <img
                       src={anExtract.imageUrl}
                       alt={`cover of ${anExtract.title}`}
                     />
-                  ) : (
+                  : anExtract.mediaType === "Book" && anExtract.imageUrl ==="" ?
+                      <img
+                      src={Book}
+                      alt={"Book placeholder"}
+                    /> :
                     <img
                       src={Onlinearticle}
                       alt={"Online Article placeholder"}
                     />
-                  )}
+                  }
                 </div>
                 <div className="text">
                   <div className="mainExtract">
@@ -105,21 +112,21 @@ export default function Mylibrary() {
                     </p>
                     <p>
                       <span className="spans">Title:</span> {anExtract.title}
-                      {anExtract.subtitle !== "n/a" ? " (" : null}
-                      {anExtract.subtitle !== "n/a" ? anExtract.subtitle:null}
-                      {anExtract.subtitle !== "n/a" ? ")" : null}
+                      {anExtract.subtitle !== "" ? " (" : null}
+                      {anExtract.subtitle !== "" ? anExtract.subtitle:null}
+                      {anExtract.subtitle !== "" ? ")" : null}
                     </p>
                     <p>
                       <span className="spans">Author:</span> {anExtract.author}
                     </p>
-                    {anExtract.page !== null ? (
+                    {anExtract.page !== "" && anExtract.mediaType ==="Book"? (
                       <p>
                         <span className="spans">Page:</span> {anExtract.page}
                       </p>
                     ) : null}
                     <p>
                       <a href={anExtract.link} target="blank">
-                        {anExtract.link !== null ? (
+                        {anExtract.link !== "" ? (
                           <span className="spans">Link</span>
                         ) : null}
                       </a>
@@ -127,8 +134,8 @@ export default function Mylibrary() {
                   </div>
                   <div className="tagscont">
                     {anExtract.tags.length > 0
-                      ? anExtract.tags.map((tag) => (
-                          <div className="extractTag" key={Math.random()}>#{tag.type}</div>
+                      ? anExtract.tags.split(/[,;.]+/).map((tag) => (
+                          <div className="extractTag" key={Math.random()}>#{tag}</div>
                         ))
                       : null}
                   </div>

@@ -1,19 +1,19 @@
 
 import React from "react";
 import { useEffect,useState } from "react";
-import "./library_page_view.css";
-import { selectUser } from "../../store/user/selectors";
+import "./Create.css";
 import { useSelector,useDispatch } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import { useHistory } from "react-router-dom";
-import Onlinearticle from "./Online_Article.png";
-import { useParams } from "react-router-dom";
 import { BoxContainer, FormContainer, Input, SubmitButton,Select } from "./common";
 import { Marginer } from "../../components/marginer";
 import styled from "styled-components";
 import TextareaAutosize from 'react-textarea-autosize';
-import { editExtract } from "../../store/user/actions";
-import Book from "./book.png"
+import { visionAPI,addExtract } from "../../store/user/actions";
+// import Brave from "./brave.png"
+// import vision from "@google-cloud/vision"
+// const Myjason =require("./apikey.json")
+
 
 const AllContainer = styled.div`
   width: 520px;
@@ -122,23 +122,69 @@ vertical-align: middle;
 
 
 
-export default function Edit() {
-  const { id } = useParams();
+export default function Dynamic_create() {
   const token = useSelector(selectToken);
   const history = useHistory();
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
-  const filteredExtract=user.extracts.filter((ext)=> ext.id===Number(id))
-  const obj=filteredExtract[0];
-  
+  const dispatch = useDispatch();  
 
   useEffect(() => {
   if (token === null) {
       history.push("/login");
     }
   }, [token, history]);
+
+  // async function quickstart() {
+  //   // const vision = require("@google-cloud/vision");
   
-  const[confirmEdit, setConfirmEdit]=useState(false)
+  //   // Creates a client
+  //   const client = new vision.ImageAnnotatorClient({
+  //     "type": "service_account",
+  //     "project_id": "senior-project-1623608431612",
+  //     "private_key_id": "316148f5c54ae39d7f6d9be673ee5ed580823414",
+  //     "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCnB3fvKtR07xQP\nasx9LkF41MX33V/nYxSQuDFQwgANGOJxdslEkdDaFclsvqLNvOXrnlZYelIK8/R/\nx+PQEROHaccIO/wqjZh7t7OOQSQFGS0zDACAGT9yWxQU4ktWAHnf9sjtZalkUYU5\nn0FiIyX9oJttDPYgoI8uHQODv1QBSzFX2B8GHoMf5BBnY2pdpZoLTfhzDsIWVBZL\nG/74hxF9u9K2NVWRbCZJ+m3Bo5YeBwtutUedJ8DPPN6kyLfO3t/9obXM/NsM2Xjo\nRaoQs5rDPiI/ZAgUTRSD8bWjjSjrt8UxkNytMR7/lkERWoPWxR3ajLnm0W/TQ4nC\nD6ifBLyhAgMBAAECggEASI41epaj0KHUGHhfmNchiLAAyRGIafZ/xffFMFv9crMH\nFpuvhVJEI6AILe1HwlBWnfnbbza/cdOUN3eozcbFMXLxCvInsYJtpPxhCp/gWjic\nCksh4oNVLMNEn2fHqvWs+21zza/2G8ZPtX6pA8zZ4WlFauMQ/Y5RdAoVb0MK5j5E\nJztFP3TUZcyaWp3Q+m/Z3T9lVDOMpszuiclU2hzdWvjo6b32+oSc3p6loPfCCwqt\nC0ufPUb4LkyNBqkzGqEyiweVNV77zjo7n5QHwh+iAC6cJJZ8RgKK6sPO+xk8S8SG\nNhigXFFv7BXT0wUsYUW5r+KEfcjalN5oLVeVD+zScwKBgQDaYDj7x/x4wXsmilK3\nvsgboB1KMCeE53EHJxP4SgG9489EqxlMeuuFcJaBHAhVRL4GhDJcXGsxnEogVj7l\ndmRpxCSwKsq0bLHPh+hQa6ypoCp3tQwF1zKow+bGBwrq+EVv8hk45hAdIDwxxYll\nLzEj3L8JyVw17iflc5XbUKkzfwKBgQDDzobuKb302nNu6b0MtEArTjyfNjGRJFoD\nEixy1EqaHdldudQO8lRowvMc0XDfP0Ly1SYCXBgTSlcATNGcLU2cVjfKurP0WzEg\noXopzJlgoqjxBog33WhlBWYnEqKqPxC2NRP9rOHHlWQ/uwadzG6y7Gx/z0iu+6Ep\nFgTqSduf3wKBgQDJ1rIUla2Xd016O9NkneObFQy9a3C7eKeRst7UWKLvfkYu8+34\nMIzL01pojx5soZL5tupNT+aL/ibNaKnNsPXyhCZc5dBhny1h4f4phrwaND3MUvx/\n0X2zWw5L7mp672pOo/gIDSzLnuXEIw5xBYNn4Dp6szCVcEBT5deW1CDvxQKBgBSN\ndg5DpWOxFlK7CBPwS5gAE07m4lcIyMXvv2iiLd51aZ5z5fVXrFJ+vAP3W/Ci9EUG\n6IFw5zoHIJCwf4P0IWRajGqkJEVu2P5C1M7UYfkJuc/qzpuGivGnmmxZgWd7TSbC\n9YE4B07quGYUHIKttaTkOhNET63GTclBPWzWKc5jAoGAJydIE5mVcc/UnjGvj4+W\nmWVP+mzCdYUxz5QlXEuK1F+FRr8emnFp8E8KOCH/awl4QtgJN5/VxSSqwaZ9h/MV\nhJxXt1MYJq+KABWufeG9+eicKoPtXjMN8rmjCaYjToEPNBmFhiqQO9mvbIOp2ENl\ncnUH/IxnK/kGbUYAtlc8pos=\n-----END PRIVATE KEY-----\n",
+  //     "client_email": "seniorprojectservice@senior-project-1623608431612.iam.gserviceaccount.com",
+  //     "client_id": "102311645769868035798",
+  //     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  //     "token_uri": "https://oauth2.googleapis.com/token",
+  //     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  //     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/seniorprojectservice%40senior-project-1623608431612.iam.gserviceaccount.com"
+  //   });
+  
+  //   // const fileName = "brave.png";
+  
+  //   // Performs text detection on the local file
+  //   const [result] = await client.textDetection({Brave});
+  //   const detections = result.textAnnotations;
+  //   console.log("Text:");
+  //   //   detections.forEach((text) => console.log(text));
+  //   console.log(detections[0].description);
+  // }
+  // // quickstart();
+
+  const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState("")
+  
+  const uploadImage = async(e) => {
+    console.log("triggered")
+    const files = e.target.files
+    const data = new FormData()
+    data.append("file", files[0])
+    data.append('upload_preset', "voa0l8os")
+    //first parameter is always upload_preset, second is the
+    setLoading(true)
+
+    const res = await fetch("https://api.cloudinary.com/v1_1/demblpikj/image/upload", {
+      method: "POST",
+      body: data
+    })
+
+    const file = await res.json()
+    console.log("file", file)
+    setImage(file.url)
+  }
+
+
+  
   const [editExtractText, setEditExtractText] = useState("");
   const [editMediaType, setEditMediaType] = useState("Book");
   const [editTitle, setEditTitle] = useState("");
@@ -149,21 +195,14 @@ export default function Edit() {
   const [editImageUrl, setEditImageUrl] = useState("");
   const [editLink, setEditLink] = useState("");
 
+  const[imgFile,setImgFile]=useState("")
+console.log(imgFile)
+  const stringy=imgFile.toString();
+console.log(stringy);
 
-  function Confirm(event) {
-    event.preventDefault();
-    console.log("I am confirming");
-
-    setConfirmEdit(true)
-    setEditExtractText(obj.text)
-    setEditMediaType(obj.mediaType)
-    setEditTitle(obj.title)
-    setEditSubtitle(obj.subtitle)
-    setEditAuthor(obj.author)
-    setEditPage(obj.page)
-    setEditTags(obj.tags)
-    setEditImageUrl(obj.imageUrl)
-    setEditLink(obj.link)
+  function vision(){
+    console.log("Dispatched for vision")
+    dispatch(visionAPI(imgFile));
   }
 
 
@@ -192,7 +231,7 @@ if(editAuthor.length<1){
     // console.log({text:editExtractText,mediaType:editMediaType,title:editTitle,subtitle:editSubtitle,author:editAuthor,page:editPage,
     //   tags:editTags,
     //   imageUrl:editImageUrl,link:editLink})
-    dispatch(editExtract(id,editExtractText,editAuthor,editTitle,editSubtitle,editPage,editLink,editMediaType,editImageUrl,
+    dispatch(addExtract(editExtractText,editAuthor,editTitle,editSubtitle,editPage,editLink,editMediaType,editImageUrl,
       editTags
       ));
     history.push("/mylibrary");
@@ -201,85 +240,8 @@ if(editAuthor.length<1){
 
   return (
     <div>
-      <div>
-        {filteredExtract.map((anExtract) => {
-          return (
-            <div key={Math.random()} className="allpage">
-              <div className="container1">
-                <div className="image">
-                {anExtract.mediaType === "Book" && anExtract.imageUrl !=="" ?
-                    <img
-                      src={anExtract.imageUrl}
-                      alt={`cover of ${anExtract.title}`}
-                    />
-                  : anExtract.mediaType === "Book" && anExtract.imageUrl ==="" ?
-                      <img
-                      src={Book}
-                      alt={"Book placeholder"}
-                    /> :
-                    <img
-                      src={Onlinearticle}
-                      alt={"Online Article placeholder"}
-                    />
-                  }
-                </div>
-                <div className="text">
-                  <div className="mainExtract">
-                    <p>{anExtract.text}</p>
-                  </div>
-                  <div className="extractInfo">
-                    <p>
-                      <span className="spans">Media type:</span>{" "}
-                      {anExtract.mediaType}
-                    </p>
-                    <p>
-                      <span className="spans">Title:</span> {anExtract.title}
-                      {anExtract.subtitle !== "" ? " (" : null}
-                      {anExtract.subtitle !== "" ? anExtract.subtitle:null}
-                      {anExtract.subtitle !== "" ? ")" : null}
-                    </p>
-                    <p>
-                      <span className="spans">Author:</span> {anExtract.author}
-                    </p>
-                    {anExtract.page !== "" && anExtract.mediaType ==="Book"? (
-                      <p>
-                        <span className="spans">Page:</span> {anExtract.page}
-                      </p>
-                    ) : null}
-                    <p>
-                      <a href={anExtract.link} target="blank">
-                        {anExtract.link !== "" ? (
-                          <span className="spans">Link</span>
-                        ) : null}
-                      </a>
-                    </p>
-                  </div>
-                  <div className="tagscont">
-                  {anExtract.tags.length > 0
-                      ? anExtract.tags.split(/[,;.]+/).map((tag) => (
-                          <div className="extractTag" key={Math.random()}>#{tag}</div>
-                        ))
-                      : null}
-                  </div>
-                  <div>
-                  <a href={`/delete/${anExtract.id}`} className="delete"><i className="far fa-trash-alt"></i></a>
-                  </div>
-                  <div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      
-        <div className="searchinfo">
-     <button onClick={Confirm} className="confirmButton">Edit</button>
-     <button onClick={Cancel} className="CancelButton">Cancel</button>
-   </div>
       <div className="editfrom">
-      {confirmEdit===true?<AllContainer>
+      <AllContainer>
     <TopContainer>
       <BackDrop />
       <HeaderContainer>
@@ -317,7 +279,6 @@ if(editAuthor.length<1){
           </Divlabel>
         <Select onChange={(event) => setEditMediaType(event.target.value)} 
         value={editMediaType}
-        // value={props.editMediaType}
         >
                 <option value="Book">Book</option>
                 <option value="Online Article" >Online Article</option>
@@ -333,7 +294,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Title"
           value={editTitle}
-          // value={props.editTitle}
           onChange={(event) => setEditTitle(event.target.value)}
           required
         />
@@ -348,7 +308,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="subtitle"
           value={editSubtitle}
-          // value={props.editSubtitle}
           onChange={(event) => setEditSubtitle(event.target.value)}
           required
         />
@@ -363,7 +322,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Author"
           value={editAuthor}
-          // value={props.editAuthor}
           onChange={(event) => setEditAuthor(event.target.value)}
           required
         />
@@ -379,7 +337,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Page"
           value={editPage}
-          // value={props.editPage}
           onChange={(event) => setEditPage(event.target.value)}
           required
         />
@@ -395,7 +352,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="tag1,tag2,tag3..."
           value={editTags}
-          // value={props.editTags}
           onChange={(event) => setEditTags(event.target.value)}
           required
         />
@@ -412,7 +368,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="ImageUrl"
           value={editImageUrl}
-          // value={props.editImageUrl}
           onChange={(event) => setEditImageUrl(event.target.value)}
           required
         />
@@ -430,7 +385,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Link"
           value={editLink}
-          // value={props.editLink}
           onChange={(event) => setEditLink(event.target.value)}
           required
         />
@@ -440,16 +394,19 @@ if(editAuthor.length<1){
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <SubmitButton type="submit" onClick={submitForm}>
-        Submit Edits
+        + New Addition
       </SubmitButton>
-      <button onClick={Cancel} style={{marginTop: "10px"}} className="CancelButton">Cancel</button>
+      <button onClick={Cancel} className="CreateCancelButton">Cancel</button>
       <Marginer direction="vertical" margin="1em" />
     </BoxContainer>
     </InnerContainer>
     <p style={{fontSize:"14px",textAlign:"center", color:"#54CC82",fontStyle:"italic"}}>*Note: please separate your tags by commas "," or semicolons ";".</p>
   </AllContainer> 
-  
-  : null}
+    </div>
+    <button onClick={vision}>Vision</button>
+    <div>
+    <input type="file" name="file" placeholder="drag it here" onChange={uploadImage}/>
+      <img src={image} alt="hey image"/>
     </div>
     </div>
   );

@@ -15,7 +15,7 @@ export const FormContainer = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
+
 `;
 
 export const MutedLink = styled.a`
@@ -45,8 +45,60 @@ export const BoldLink = styled.a`
 `;
 
 export const Input = styled.input`
-  width: 100%;
+width:78%;
   height: 42px;
+  outline: none;
+  margin-bottom:5px;
+  border: 1px solid rgba(28, 138, 190, 0.4);
+  padding: 0px 10px;
+  color: #1c8abe;
+  transition: all 200ms ease-in-out;
+  font-size: 16px;
+  &::placeholder {
+    color: rgba(28, 138, 190, 0.7);
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(28, 138, 190);
+    color: #1c8abe;
+    font-weight: bold;
+  }
+`;
+// export const InputBigText = styled.textarea`
+//   width: 78%;
+//   height:42px;
+//   height:fit-content;
+//   margin-bottom:5px;
+//   outline: none;
+//   border: 1px solid rgba(28, 138, 190, 0.4);
+//   padding: 0px 10px;
+//   color: #1c8abe;
+//   transition: all 200ms ease-in-out;
+//   font-size: 16px;
+//   &::placeholder {
+//     color: rgba(28, 138, 190, 0.7);
+//   }
+
+//   &:not(:last-of-type) {
+//     border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
+//   }
+
+//   &:focus {
+//     outline: none;
+//     border-bottom: 2px solid rgb(28, 138, 190);
+//     color: #1c8abe;
+//     font-weight: bold;
+//   }
+// `;
+export const Select = styled.select`
+  width: 78%;
+  height: 42px;
+  margin-bottom:5px;
   outline: none;
   border: 1px solid rgba(28, 138, 190, 0.4);
   padding: 0px 10px;
@@ -67,12 +119,11 @@ export const Input = styled.input`
     border-bottom: 2px solid rgb(28, 138, 190);
     color: #1c8abe;
     font-weight: bold;
-    letter-spacing: 2px;
   }
 `;
 
 export const SubmitButton = styled.button`
-  width: 77%;
+  width: 52%;
   padding: 11px 10%;
   margin-top: 5%;
   color: #fff;
@@ -88,6 +139,10 @@ export const SubmitButton = styled.button`
     rgba(28, 139, 190, 1) 40%,
     rgba(74, 177, 224, 1) 100%
   );
+  @media screen and (max-width: 900px) {
+    width: 70%;
+
+  }
 
   &:hover {
     filter: brightness(1.09);

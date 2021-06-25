@@ -18,6 +18,8 @@ import About from "./pages/About";
 import Mylibrary from "./pages/My_library";
 import Delete from "./pages/Delete"
 import Edit from "./pages/Edit/index"
+import Create from "./pages/Create/index"
+import Dynamic_create from "./pages/Dynamic/index"
 
 const AppContainer = styled.div`
   width: 100%;
@@ -49,6 +51,8 @@ function App() {
           <Route path="/mylibrary" component={Mylibrary} />
           <Route path="/delete/:id" component={Delete} />
           <Route path="/edit/:id" component={Edit} />
+          <Route path="/create" component={Create} />
+          <Route path="/dynamic" component={Dynamic_create} />
           <AppContainer>
             <Route path="/login" component={AccountBox} />
             <Route path="/patchpw/:token" component={Pwreset} />

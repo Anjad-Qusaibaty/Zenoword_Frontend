@@ -1,7 +1,6 @@
 .areas{
   width: 78%;
   min-height:42px;
-  height:fit-content;
   margin-bottom:5px;
   outline: none;
   border: 1px solid rgba(28, 138, 190, 0.4);
@@ -9,7 +8,6 @@
   color: #1c8abe;
   transition: all 200ms ease-in-out;
   font-size: 16px;
-
 }
 .areas::placeholder {
   color: rgba(28, 138, 190, 0.7);
@@ -309,8 +307,8 @@ font-size: 20px;
   letter-spacing: 1px;
 
 }
-.CancelButton{
-  margin-left: 10px;
+.CreateCancelButton{
+  margin-top: 10px;
   display: inline-block;
   width: 120px;
   height: 46px;
@@ -328,7 +326,7 @@ font-size: 20px;
     rgba(142, 230, 176, 1) 100%
   ); 
 }
-.CancelButton:hover {
+.CreateCancelButton:hover {
   filter: brightness(1.08);
   letter-spacing: 1px;
 
@@ -398,6 +396,7 @@ font-size: 20px;
   .resetButton{
     font-size: 14px;
   }
+ 
 
 }
 @media screen and (max-width: 2024px) {

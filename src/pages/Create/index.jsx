@@ -1,19 +1,16 @@
 
 import React from "react";
 import { useEffect,useState } from "react";
-import "./library_page_view.css";
-import { selectUser } from "../../store/user/selectors";
+import "./Create.css";
 import { useSelector,useDispatch } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import { useHistory } from "react-router-dom";
-import Onlinearticle from "./Online_Article.png";
-import { useParams } from "react-router-dom";
 import { BoxContainer, FormContainer, Input, SubmitButton,Select } from "./common";
 import { Marginer } from "../../components/marginer";
 import styled from "styled-components";
 import TextareaAutosize from 'react-textarea-autosize';
-import { editExtract } from "../../store/user/actions";
-import Book from "./book.png"
+import { addExtract } from "../../store/user/actions";
+
 
 const AllContainer = styled.div`
   width: 520px;
@@ -122,15 +119,11 @@ vertical-align: middle;
 
 
 
-export default function Edit() {
-  const { id } = useParams();
+export default function Create() {
+  
   const token = useSelector(selectToken);
   const history = useHistory();
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
-  const filteredExtract=user.extracts.filter((ext)=> ext.id===Number(id))
-  const obj=filteredExtract[0];
-  
+  const dispatch = useDispatch();  
 
   useEffect(() => {
   if (token === null) {
@@ -138,7 +131,6 @@ export default function Edit() {
     }
   }, [token, history]);
   
-  const[confirmEdit, setConfirmEdit]=useState(false)
   const [editExtractText, setEditExtractText] = useState("");
   const [editMediaType, setEditMediaType] = useState("Book");
   const [editTitle, setEditTitle] = useState("");
@@ -150,21 +142,6 @@ export default function Edit() {
   const [editLink, setEditLink] = useState("");
 
 
-  function Confirm(event) {
-    event.preventDefault();
-    console.log("I am confirming");
-
-    setConfirmEdit(true)
-    setEditExtractText(obj.text)
-    setEditMediaType(obj.mediaType)
-    setEditTitle(obj.title)
-    setEditSubtitle(obj.subtitle)
-    setEditAuthor(obj.author)
-    setEditPage(obj.page)
-    setEditTags(obj.tags)
-    setEditImageUrl(obj.imageUrl)
-    setEditLink(obj.link)
-  }
 
 
   function Cancel(event){
@@ -192,7 +169,7 @@ if(editAuthor.length<1){
     // console.log({text:editExtractText,mediaType:editMediaType,title:editTitle,subtitle:editSubtitle,author:editAuthor,page:editPage,
     //   tags:editTags,
     //   imageUrl:editImageUrl,link:editLink})
-    dispatch(editExtract(id,editExtractText,editAuthor,editTitle,editSubtitle,editPage,editLink,editMediaType,editImageUrl,
+    dispatch(addExtract(editExtractText,editAuthor,editTitle,editSubtitle,editPage,editLink,editMediaType,editImageUrl,
       editTags
       ));
     history.push("/mylibrary");
@@ -201,85 +178,8 @@ if(editAuthor.length<1){
 
   return (
     <div>
-      <div>
-        {filteredExtract.map((anExtract) => {
-          return (
-            <div key={Math.random()} className="allpage">
-              <div className="container1">
-                <div className="image">
-                {anExtract.mediaType === "Book" && anExtract.imageUrl !=="" ?
-                    <img
-                      src={anExtract.imageUrl}
-                      alt={`cover of ${anExtract.title}`}
-                    />
-                  : anExtract.mediaType === "Book" && anExtract.imageUrl ==="" ?
-                      <img
-                      src={Book}
-                      alt={"Book placeholder"}
-                    /> :
-                    <img
-                      src={Onlinearticle}
-                      alt={"Online Article placeholder"}
-                    />
-                  }
-                </div>
-                <div className="text">
-                  <div className="mainExtract">
-                    <p>{anExtract.text}</p>
-                  </div>
-                  <div className="extractInfo">
-                    <p>
-                      <span className="spans">Media type:</span>{" "}
-                      {anExtract.mediaType}
-                    </p>
-                    <p>
-                      <span className="spans">Title:</span> {anExtract.title}
-                      {anExtract.subtitle !== "" ? " (" : null}
-                      {anExtract.subtitle !== "" ? anExtract.subtitle:null}
-                      {anExtract.subtitle !== "" ? ")" : null}
-                    </p>
-                    <p>
-                      <span className="spans">Author:</span> {anExtract.author}
-                    </p>
-                    {anExtract.page !== "" && anExtract.mediaType ==="Book"? (
-                      <p>
-                        <span className="spans">Page:</span> {anExtract.page}
-                      </p>
-                    ) : null}
-                    <p>
-                      <a href={anExtract.link} target="blank">
-                        {anExtract.link !== "" ? (
-                          <span className="spans">Link</span>
-                        ) : null}
-                      </a>
-                    </p>
-                  </div>
-                  <div className="tagscont">
-                  {anExtract.tags.length > 0
-                      ? anExtract.tags.split(/[,;.]+/).map((tag) => (
-                          <div className="extractTag" key={Math.random()}>#{tag}</div>
-                        ))
-                      : null}
-                  </div>
-                  <div>
-                  <a href={`/delete/${anExtract.id}`} className="delete"><i className="far fa-trash-alt"></i></a>
-                  </div>
-                  <div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      
-        <div className="searchinfo">
-     <button onClick={Confirm} className="confirmButton">Edit</button>
-     <button onClick={Cancel} className="CancelButton">Cancel</button>
-   </div>
       <div className="editfrom">
-      {confirmEdit===true?<AllContainer>
+      <AllContainer>
     <TopContainer>
       <BackDrop />
       <HeaderContainer>
@@ -317,7 +217,6 @@ if(editAuthor.length<1){
           </Divlabel>
         <Select onChange={(event) => setEditMediaType(event.target.value)} 
         value={editMediaType}
-        // value={props.editMediaType}
         >
                 <option value="Book">Book</option>
                 <option value="Online Article" >Online Article</option>
@@ -333,7 +232,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Title"
           value={editTitle}
-          // value={props.editTitle}
           onChange={(event) => setEditTitle(event.target.value)}
           required
         />
@@ -348,7 +246,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="subtitle"
           value={editSubtitle}
-          // value={props.editSubtitle}
           onChange={(event) => setEditSubtitle(event.target.value)}
           required
         />
@@ -363,7 +260,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Author"
           value={editAuthor}
-          // value={props.editAuthor}
           onChange={(event) => setEditAuthor(event.target.value)}
           required
         />
@@ -379,7 +275,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Page"
           value={editPage}
-          // value={props.editPage}
           onChange={(event) => setEditPage(event.target.value)}
           required
         />
@@ -395,7 +290,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="tag1,tag2,tag3..."
           value={editTags}
-          // value={props.editTags}
           onChange={(event) => setEditTags(event.target.value)}
           required
         />
@@ -412,7 +306,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="ImageUrl"
           value={editImageUrl}
-          // value={props.editImageUrl}
           onChange={(event) => setEditImageUrl(event.target.value)}
           required
         />
@@ -430,7 +323,6 @@ if(editAuthor.length<1){
           type="text"
           placeholder="Link"
           value={editLink}
-          // value={props.editLink}
           onChange={(event) => setEditLink(event.target.value)}
           required
         />
@@ -440,16 +332,14 @@ if(editAuthor.length<1){
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <SubmitButton type="submit" onClick={submitForm}>
-        Submit Edits
+        + New Addition
       </SubmitButton>
-      <button onClick={Cancel} style={{marginTop: "10px"}} className="CancelButton">Cancel</button>
+      <button onClick={Cancel} className="CreateCancelButton">Cancel</button>
       <Marginer direction="vertical" margin="1em" />
     </BoxContainer>
     </InnerContainer>
     <p style={{fontSize:"14px",textAlign:"center", color:"#54CC82",fontStyle:"italic"}}>*Note: please separate your tags by commas "," or semicolons ";".</p>
   </AllContainer> 
-  
-  : null}
     </div>
     </div>
   );
