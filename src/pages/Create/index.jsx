@@ -183,9 +183,9 @@ if(editAuthor.length<1){
     <TopContainer>
       <BackDrop />
       <HeaderContainer>
-        <HeaderText>Edit</HeaderText>
+        <HeaderText>Create</HeaderText>
         <HeaderText>Extract</HeaderText>
-        <SmallText>Please type in your edits</SmallText>
+        <SmallText>Please add the extract details</SmallText>
       </HeaderContainer>
     </TopContainer>
     <InnerContainer>

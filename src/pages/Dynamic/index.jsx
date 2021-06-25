@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useEffect,useState } from "react";
+import axios from "axios";
 import "./Create.css";
 import { useSelector,useDispatch } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
@@ -9,10 +10,9 @@ import { BoxContainer, FormContainer, Input, SubmitButton,Select } from "./commo
 import { Marginer } from "../../components/marginer";
 import styled from "styled-components";
 import TextareaAutosize from 'react-textarea-autosize';
-import { visionAPI,addExtract } from "../../store/user/actions";
-// import Brave from "./brave.png"
-// import vision from "@google-cloud/vision"
-// const Myjason =require("./apikey.json")
+import { addExtract } from "../../store/user/actions";
+import { apiUrl } from "../../config/constants";
+import Placeholder from "./image_placeholder.png"
 
 
 const AllContainer = styled.div`
@@ -132,37 +132,11 @@ export default function Dynamic_create() {
       history.push("/login");
     }
   }, [token, history]);
+  
+  const [image, setImage] = useState(Placeholder)
 
-  // async function quickstart() {
-  //   // const vision = require("@google-cloud/vision");
-  
-  //   // Creates a client
-  //   const client = new vision.ImageAnnotatorClient({
-  //     "type": "service_account",
-  //     "project_id": "senior-project-1623608431612",
-  //     "private_key_id": "316148f5c54ae39d7f6d9be673ee5ed580823414",
-  //     "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCnB3fvKtR07xQP\nasx9LkF41MX33V/nYxSQuDFQwgANGOJxdslEkdDaFclsvqLNvOXrnlZYelIK8/R/\nx+PQEROHaccIO/wqjZh7t7OOQSQFGS0zDACAGT9yWxQU4ktWAHnf9sjtZalkUYU5\nn0FiIyX9oJttDPYgoI8uHQODv1QBSzFX2B8GHoMf5BBnY2pdpZoLTfhzDsIWVBZL\nG/74hxF9u9K2NVWRbCZJ+m3Bo5YeBwtutUedJ8DPPN6kyLfO3t/9obXM/NsM2Xjo\nRaoQs5rDPiI/ZAgUTRSD8bWjjSjrt8UxkNytMR7/lkERWoPWxR3ajLnm0W/TQ4nC\nD6ifBLyhAgMBAAECggEASI41epaj0KHUGHhfmNchiLAAyRGIafZ/xffFMFv9crMH\nFpuvhVJEI6AILe1HwlBWnfnbbza/cdOUN3eozcbFMXLxCvInsYJtpPxhCp/gWjic\nCksh4oNVLMNEn2fHqvWs+21zza/2G8ZPtX6pA8zZ4WlFauMQ/Y5RdAoVb0MK5j5E\nJztFP3TUZcyaWp3Q+m/Z3T9lVDOMpszuiclU2hzdWvjo6b32+oSc3p6loPfCCwqt\nC0ufPUb4LkyNBqkzGqEyiweVNV77zjo7n5QHwh+iAC6cJJZ8RgKK6sPO+xk8S8SG\nNhigXFFv7BXT0wUsYUW5r+KEfcjalN5oLVeVD+zScwKBgQDaYDj7x/x4wXsmilK3\nvsgboB1KMCeE53EHJxP4SgG9489EqxlMeuuFcJaBHAhVRL4GhDJcXGsxnEogVj7l\ndmRpxCSwKsq0bLHPh+hQa6ypoCp3tQwF1zKow+bGBwrq+EVv8hk45hAdIDwxxYll\nLzEj3L8JyVw17iflc5XbUKkzfwKBgQDDzobuKb302nNu6b0MtEArTjyfNjGRJFoD\nEixy1EqaHdldudQO8lRowvMc0XDfP0Ly1SYCXBgTSlcATNGcLU2cVjfKurP0WzEg\noXopzJlgoqjxBog33WhlBWYnEqKqPxC2NRP9rOHHlWQ/uwadzG6y7Gx/z0iu+6Ep\nFgTqSduf3wKBgQDJ1rIUla2Xd016O9NkneObFQy9a3C7eKeRst7UWKLvfkYu8+34\nMIzL01pojx5soZL5tupNT+aL/ibNaKnNsPXyhCZc5dBhny1h4f4phrwaND3MUvx/\n0X2zWw5L7mp672pOo/gIDSzLnuXEIw5xBYNn4Dp6szCVcEBT5deW1CDvxQKBgBSN\ndg5DpWOxFlK7CBPwS5gAE07m4lcIyMXvv2iiLd51aZ5z5fVXrFJ+vAP3W/Ci9EUG\n6IFw5zoHIJCwf4P0IWRajGqkJEVu2P5C1M7UYfkJuc/qzpuGivGnmmxZgWd7TSbC\n9YE4B07quGYUHIKttaTkOhNET63GTclBPWzWKc5jAoGAJydIE5mVcc/UnjGvj4+W\nmWVP+mzCdYUxz5QlXEuK1F+FRr8emnFp8E8KOCH/awl4QtgJN5/VxSSqwaZ9h/MV\nhJxXt1MYJq+KABWufeG9+eicKoPtXjMN8rmjCaYjToEPNBmFhiqQO9mvbIOp2ENl\ncnUH/IxnK/kGbUYAtlc8pos=\n-----END PRIVATE KEY-----\n",
-  //     "client_email": "seniorprojectservice@senior-project-1623608431612.iam.gserviceaccount.com",
-  //     "client_id": "102311645769868035798",
-  //     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  //     "token_uri": "https://oauth2.googleapis.com/token",
-  //     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  //     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/seniorprojectservice%40senior-project-1623608431612.iam.gserviceaccount.com"
-  //   });
-  
-  //   // const fileName = "brave.png";
-  
-  //   // Performs text detection on the local file
-  //   const [result] = await client.textDetection({Brave});
-  //   const detections = result.textAnnotations;
-  //   console.log("Text:");
-  //   //   detections.forEach((text) => console.log(text));
-  //   console.log(detections[0].description);
-  // }
-  // // quickstart();
+ 
 
-  const [loading, setLoading] = useState(false)
-  const [image, setImage] = useState("")
   
   const uploadImage = async(e) => {
     console.log("triggered")
@@ -170,9 +144,7 @@ export default function Dynamic_create() {
     const data = new FormData()
     data.append("file", files[0])
     data.append('upload_preset', "voa0l8os")
-    //first parameter is always upload_preset, second is the
-    setLoading(true)
-
+    
     const res = await fetch("https://api.cloudinary.com/v1_1/demblpikj/image/upload", {
       method: "POST",
       body: data
@@ -195,15 +167,22 @@ export default function Dynamic_create() {
   const [editImageUrl, setEditImageUrl] = useState("");
   const [editLink, setEditLink] = useState("");
 
-  const[imgFile,setImgFile]=useState("")
-console.log(imgFile)
-  const stringy=imgFile.toString();
-console.log(stringy);
-
-  function vision(){
-    console.log("Dispatched for vision")
-    dispatch(visionAPI(imgFile));
+ 
+async function fetchImageText() {
+      
+  try{
+    if(image===Placeholder){
+      return alert("You have to select an image file first!")
+    }
+    const response = await axios.post(`${apiUrl}/extracts/vision`,{image});
+    setEditExtractText(response.data);
+    
+  } catch (error){
+    console.log("error test:", error.message);
   }
+  
+};
+
 
 
   function Cancel(event){
@@ -245,13 +224,25 @@ if(editAuthor.length<1){
     <TopContainer>
       <BackDrop />
       <HeaderContainer>
-        <HeaderText>Edit</HeaderText>
+      <HeaderText>Create</HeaderText>
         <HeaderText>Extract</HeaderText>
-        <SmallText>Please type in your edits</SmallText>
+        <SmallText>Please add the extract details</SmallText>
       </HeaderContainer>
     </TopContainer>
     <InnerContainer>
     <BoxContainer>
+      <div className="Aisection">
+      <p className="aiText">Get the extract text from an image:</p>
+       <img className="extimage" src={image} alt="extract"/>
+       <Divlabel>
+        <input className="Uploadimage" type="file" onChange={uploadImage}/>
+          </Divlabel>
+        <Marginer direction="vertical" margin={10} />
+      <button className="imagetotext" onClick={fetchImageText}>
+        Image to Text
+      </button>
+      <Marginer direction="vertical" margin="1em" />
+      <p className="aiText">Or type the extract manually:</p>
       <FormContainer>
       <Divlabelinput>
         <Divlabel>
@@ -271,6 +262,29 @@ if(editAuthor.length<1){
         />
 
         </Divlabelinput>
+        </FormContainer>
+     
+        </div>
+        <p style={{color:"#1C8ABE",fontSize:"18px"}}>Media Info:</p>
+      <FormContainer style={{border:"solid .5px rgb(28, 138, 190,0.4)",padding:"10px"}}>
+      {/* <Divlabelinput>
+        <Divlabel>
+        <FormLabel>
+          Text:
+          </FormLabel>
+          </Divlabel>
+        <TextareaAutosize
+       className="areas"
+          
+          placeholder="Extract Text"
+          value={editExtractText}
+          // value={props.editExtractText}
+          onChange={(event) => setEditExtractText(event.target.value)}
+          required
+          wrap="hard"
+        />
+
+        </Divlabelinput> */}
         <Divlabelinput>
         <Divlabel>
         <FormLabel>
@@ -402,11 +416,6 @@ if(editAuthor.length<1){
     </InnerContainer>
     <p style={{fontSize:"14px",textAlign:"center", color:"#54CC82",fontStyle:"italic"}}>*Note: please separate your tags by commas "," or semicolons ";".</p>
   </AllContainer> 
-    </div>
-    <button onClick={vision}>Vision</button>
-    <div>
-    <input type="file" name="file" placeholder="drag it here" onChange={uploadImage}/>
-      <img src={image} alt="hey image"/>
     </div>
     </div>
   );

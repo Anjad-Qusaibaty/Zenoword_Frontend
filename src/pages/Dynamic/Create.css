@@ -343,6 +343,59 @@ font-size: 20px;
   margin-bottom: 20px;
 }
 
+.imagetotext{
+  margin-right: 10px;
+  display: inline-block;
+  width: 150px;
+  height: 46px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all, 240ms ease-in-out;
+  background: rgb(84, 204, 130);
+  background: linear-gradient(
+    58deg,
+    rgba(84, 204, 130, 1) 40%,
+    rgba(142, 230, 176, 1) 100%
+  );
+}
+.imagetotext:hover {
+  filter: brightness(1.08);
+  letter-spacing: 1px;
+
+}
+.Uploadimage{
+
+width: 230px;
+margin-top: 10px;
+}
+
+.extimage{
+  width:70%; 
+  height:auto;
+}
+
+.Aisection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  border: solid .5px rgb(28, 138, 190,0.4);
+  padding:10px;
+  margin-bottom: 10px;
+}
+.aiText{
+color:#54CC82;
+font-size: 18px;
+}
+
 @media screen and (max-width: 900px) {
   .container1 {
     flex-direction: column;
@@ -396,7 +449,26 @@ font-size: 20px;
   .resetButton{
     font-size: 14px;
   }
- 
+ .extimage{
+   width:70%;
+   height: auto;
+   
+
+   
+ }
+ .Uploadimage{
+width:100px;
+ }
+ .aiText{
+  color:#54CC82;
+  font-size: 14px;
+  }
+ /* .Aisection{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+} */
 
 }
 @media screen and (max-width: 2024px) {

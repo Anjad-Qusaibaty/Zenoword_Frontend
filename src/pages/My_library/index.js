@@ -27,7 +27,7 @@ export default function Mylibrary() {
   const [filteredData,setFilteredData]=useState([""]);
  
   function redirectToCreate(){
-    history.push("/create");
+    history.push("/dynamic");
   }
 
 
