@@ -5,7 +5,7 @@ import React from "react";
 import styled from "styled-components";
 import { EmailConfForm } from "./emailConfForm";
 
-const BoxContainer = styled.div`
+export const BoxContainer = styled.div`
   width: 320px;
   min-height: 550px;
   display: flex;
@@ -17,7 +17,7 @@ const BoxContainer = styled.div`
   overflow: hidden;
 `;
 
-const TopContainer = styled.div`
+export const TopContainer = styled.div`
   width: 100%;
   height: 250px;
   display: flex;
@@ -27,7 +27,7 @@ const TopContainer = styled.div`
   padding-bottom: 5em;
 `;
 
-const BackDrop = styled.div`
+export const BackDrop = styled.div`
   width: 160%;
   height: 550px;
   position: absolute;
@@ -45,13 +45,13 @@ const BackDrop = styled.div`
   );
 `;
 
-const HeaderContainer = styled.div`
+export const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-const HeaderText = styled.h2`
+export const HeaderText = styled.h2`
   font-size: 40px;
   font-weight: 600;
   line-height: 1.24;
@@ -61,7 +61,7 @@ const HeaderText = styled.h2`
   margin: 0;
 `;
 
-const SmallText = styled.h5`
+export const SmallText = styled.h5`
   color: #fff;
   text-align: center;
   font-weight: 500;
@@ -71,7 +71,7 @@ const SmallText = styled.h5`
   margin-top: 7px;
 `;
 
-const InnerContainer = styled.div`
+export const InnerContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;

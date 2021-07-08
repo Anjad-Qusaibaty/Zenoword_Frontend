@@ -13,13 +13,14 @@ import { AccountBox } from "./components/accountBox";
 import styled from "styled-components";
 import { Pwreset } from "./components/accountBox/pwReset";
 import { EmailConfAlt } from "./components/accountBox/emailConf";
+import Confirmed from "./components/accountBox/confirmed";
 import { Appfooter } from "./components/footer/appfooter";
 import About from "./pages/About";
 import Mylibrary from "./pages/My_library";
-import Delete from "./pages/Delete"
-import Edit from "./pages/Edit/index"
-import Create from "./pages/Create/index"
-import Dynamic_create from "./pages/Dynamic/index"
+import Delete from "./pages/Delete";
+import Edit from "./pages/Edit/index";
+import Create from "./pages/Create/index";
+import Dynamic_create from "./pages/Dynamic/index";
 
 const AppContainer = styled.div`
   width: 100%;
@@ -54,6 +55,7 @@ function App() {
           <Route path="/create" component={Create} />
           <Route path="/dynamic" component={Dynamic_create} />
           <AppContainer>
+            <Route path="/confirmed/:token" component={Confirmed} />
             <Route path="/login" component={AccountBox} />
             <Route path="/patchpw/:token" component={Pwreset} />
             <Route path="/emailconf" component={EmailConfAlt} />

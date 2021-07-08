@@ -94,3 +94,34 @@ export const SubmitButton = styled.button`
     letter-spacing: 1px;
   }
 `;
+export const LinkButton = styled.a`
+  width: 77%;
+  padding: 11px 10%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  border-radius: 100px 100px 100px 100px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgb(28, 139, 190);
+  background: linear-gradient(
+    58deg,
+    rgba(28, 139, 190, 1) 40%,
+    rgba(74, 177, 224, 1) 100%
+  );
+
+  &:hover {
+    filter: brightness(1.09);
+    text-decoration: none;
+  }
+  &:link {
+    color: white;
+  }
+  &:visited {
+    color: white;
+  }
+`;

@@ -1,0 +1,45 @@
+.postconfbutton {
+  width: fit-content;
+  padding: 11px 3%;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  border-radius: 100px 100px 100px 100px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgb(28, 139, 190);
+  background: linear-gradient(
+    58deg,
+    rgba(28, 139, 190, 1) 40%,
+    rgba(74, 177, 224, 1) 100%
+  );
+}
+.postconfbutton:hover {
+  filter: brightness(1.09);
+}
+
+.Generaltext {
+  font-size: 18px;
+  color: #1c8abe;
+}
+
+.msgcontainer {
+  text-align: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.isconfirmed {
+  font-size: 16px;
+  color: #54cc82;
+}
+
+.isnotconfirmed {
+  font-size: 16px;
+  color: #721b24;
+}

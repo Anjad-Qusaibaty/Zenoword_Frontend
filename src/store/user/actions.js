@@ -131,6 +131,25 @@ export const emailConf = (email) => {
     }
   };
 };
+export const postEmailConfirmed = (token) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    try {
+      const response = await axios.get(`${apiUrl}/confirmation/${token}`);
+      dispatch(showMessageWithTimeout("success", true, response.data, 10000));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
 export const patchpw = (password, token) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
@@ -162,17 +181,25 @@ export const patchpw = (password, token) => {
   };
 };
 export const deleteExtract = (id) => {
-  return async (dispatch,getState) => {
+  return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      
-      const userId=getState().user.id
+      const userId = getState().user.id;
       console.log(userId);
-      const response = await axios.post(`${apiUrl}/extracts/delete/${id}`,{userId});
+      const response = await axios.post(`${apiUrl}/extracts/delete/${id}`, {
+        userId,
+      });
       // console.log("extracts after deleting",response.data);
 
       dispatch(deleteSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", false, "The extract has been deleted.", 1500));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          false,
+          "The extract has been deleted.",
+          1500
+        )
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -186,15 +213,25 @@ export const deleteExtract = (id) => {
     }
   };
 };
-export const editExtract = (id,text,author,title,subtitle,page,link,mediaType,imageUrl,tags) => {
-  return async (dispatch,getState) => {
+export const editExtract = (
+  id,
+  text,
+  author,
+  title,
+  subtitle,
+  page,
+  link,
+  mediaType,
+  imageUrl,
+  tags
+) => {
+  return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      
-      const userId=getState().user.id
+      const userId = getState().user.id;
       console.log(userId);
-      const response = await axios.patch(`${apiUrl}/extracts/edit/${id}`,
-      {text,
+      const response = await axios.patch(`${apiUrl}/extracts/edit/${id}`, {
+        text,
         author,
         title,
         subtitle,
@@ -203,12 +240,20 @@ export const editExtract = (id,text,author,title,subtitle,page,link,mediaType,im
         mediaType,
         imageUrl,
         tags,
-        userId});
-      
-      console.log("updated extracts",response.data);
+        userId,
+      });
+
+      console.log("updated extracts", response.data);
 
       dispatch(editSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", false, "The extract has been updated.", 1500));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          false,
+          "The extract has been updated.",
+          1500
+        )
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -222,15 +267,24 @@ export const editExtract = (id,text,author,title,subtitle,page,link,mediaType,im
     }
   };
 };
-export const addExtract = (text,author,title,subtitle,page,link,mediaType,imageUrl,tags) => {
-  return async (dispatch,getState) => {
+export const addExtract = (
+  text,
+  author,
+  title,
+  subtitle,
+  page,
+  link,
+  mediaType,
+  imageUrl,
+  tags
+) => {
+  return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      
-      const userId=getState().user.id
+      const userId = getState().user.id;
       console.log(userId);
-      const response = await axios.patch(`${apiUrl}/extracts/create`,
-      {text,
+      const response = await axios.patch(`${apiUrl}/extracts/create`, {
+        text,
         author,
         title,
         subtitle,
@@ -239,12 +293,20 @@ export const addExtract = (text,author,title,subtitle,page,link,mediaType,imageU
         mediaType,
         imageUrl,
         tags,
-        userId});
-      
-      console.log("updated extracts",response.data);
+        userId,
+      });
+
+      console.log("updated extracts", response.data);
 
       dispatch(addSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", false, "An extract has been added.", 1500));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          false,
+          "An extract has been added.",
+          1500
+        )
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -259,18 +321,27 @@ export const addExtract = (text,author,title,subtitle,page,link,mediaType,imageU
   };
 };
 export const visionAPI = (location) => {
-  return async (dispatch,getState) => {
+  return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      
-      const userId=getState().user.id
+      const userId = getState().user.id;
 
-      const response = await axios.post(`${apiUrl}/extracts/vision`,{userId,location});
-      
-      console.log("Vision Data?",response.data);
+      const response = await axios.post(`${apiUrl}/extracts/vision`, {
+        userId,
+        location,
+      });
+
+      console.log("Vision Data?", response.data);
 
       // dispatch(addSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", false, "An extract has been added.", 1500));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          false,
+          "An extract has been added.",
+          1500
+        )
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -284,7 +355,6 @@ export const visionAPI = (location) => {
     }
   };
 };
-
 
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
@@ -318,4 +388,3 @@ export const getUserWithStoredToken = () => {
     }
   };
 };
-
