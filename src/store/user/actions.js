@@ -283,7 +283,7 @@ export const addExtract = (
     try {
       const userId = getState().user.id;
       console.log(userId);
-      const response = await axios.patch(`${apiUrl}/extracts/create`, {
+      const response = await axios.post(`${apiUrl}/extracts/create`, {
         text,
         author,
         title,
